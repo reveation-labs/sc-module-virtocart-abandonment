@@ -1,0 +1,28 @@
+{
+  "CartAbandonmentReminder": {
+    "blades": {
+      "hello-world": {
+        "title": "Hello world blade"
+      }
+    }
+  },
+  "permissions": {
+    "CartAbandonmentReminder:access": "Open CartAbandonmentReminder menu",
+    "CartAbandonmentReminder:create": "Create CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:read": "View CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:update": "Update CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:delete": "Delete CartAbandonmentReminder related data"
+  },
+  "settings": {
+    "CartAbandonmentReminder": {
+      "CartAbandonmentReminderEnabled": {
+        "title": "CartAbandonmentReminder Enabled",
+        "description": "CartAbandonmentReminder Enabled setting"
+      },
+      "CronExpression": {
+        "title": "Cart Abandonment Reminder Cron",
+        "description": "CartAbandonmentReminder Cron Timing"
+      }
+    }
+  }
+}

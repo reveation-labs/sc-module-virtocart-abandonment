@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <id>VirtoCommerce.CartAbandonmentReminder</id>
+    <version>3.200.0</version>
+    <version-tag></version-tag>
+
+    <platformVersion>3.200.0</platformVersion>
+    <dependencies>
+        <!--<dependency id="VirtoCommerce.Core" version="3.200.0" />-->
+    </dependencies>
+
+    <title>CartAbandonmentReminder module</title>
+    <description>CartAbandonmentReminder module</description>
+
+    <authors>
+        <author>Sharp Code Solutions</author>
+    </authors>
+    <owners>
+        <owner>VirtoCommerce</owner>
+    </owners>
+
+    <projectUrl>https://github.com/VirtoCommerce/vc-module-cart-abandonment-reminder</projectUrl>
+    <iconUrl>Modules/$(VirtoCommerce.CartAbandonmentReminder)/Content/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <assemblyFile>VirtoCommerce.CartAbandonmentReminder.Web.dll</assemblyFile>
+    <moduleType>VirtoCommerce.CartAbandonmentReminder.Web.Module, VirtoCommerce.CartAbandonmentReminder.Web</moduleType>
+
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright © 2022 VirtoCommerce. All rights reserved</copyright>
+    <tags>extension module</tags>
+    <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
+</module>
