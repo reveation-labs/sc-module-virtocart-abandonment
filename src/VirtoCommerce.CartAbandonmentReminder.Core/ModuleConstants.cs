@@ -47,7 +47,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
                 };
                 public static readonly SettingDescriptor CartAbandonmentTime = new SettingDescriptor
                 {
-                    Name = "CartAbandonmentReminder.CronExpression",
+                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
                     GroupName = "CartAbandonmentReminder|General",
                     ValueType = SettingValueType.Integer
                 };

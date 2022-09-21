@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.VisualBasic;
 using VirtoCommerce.CartAbandonmentReminder.Core;
 using VirtoCommerce.CartAbandonmentReminder.Core.Services;
@@ -39,8 +40,12 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
         public async Task Process()
         {
             var dateTime = DateTime.Now;
-            var cartAbandonmentTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CartAbandonmentTime.Name,-24);
-            var startDateTime = dateTime.AddHours(cartAbandonmentTime);
+            var cartAbandonmentTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CartAbandonmentTime.Name,24);
+            if(cartAbandonmentTime < 1)
+            {
+                throw new Exception("Time should be greater then 0");
+            }
+            var startDateTime = dateTime.AddHours(-cartAbandonmentTime);
             var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
             {
                 ModifiedEndDate = startDateTime,
