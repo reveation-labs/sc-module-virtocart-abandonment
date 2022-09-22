@@ -21,7 +21,11 @@
       },
       "CronExpression": {
         "title": "Cart Abandonment Reminder Cron",
-        "description": "CartAbandonmentReminder Cron Timing"
+        "description": "CartAbandonmentReminder Cron"
+      },
+      "CartAbandonmentTime": {
+        "title": "Cart Abandonment Time",
+        "description": "CartAbandonmentReminder Timing"
       }
     }
   }
