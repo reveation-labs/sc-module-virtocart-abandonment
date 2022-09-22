@@ -13,8 +13,10 @@ using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.CartModule.Core.Services;
 using VirtoCommerce.CartModule.Data.Repositories;
 using VirtoCommerce.CartModule.Data.Services;
+using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Settings;
+using VirtoCommerce.StoreModule.Core.Model;
 
 namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
 {
@@ -39,6 +41,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
         // Failed job goes to "Failed" state (by default) after retries exhausted.
         public async Task Process()
         {
+            var response = CartResponseGroup.Full;
             var dateTime = DateTime.Now;
             var cartAbandonmentTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CartAbandonmentTime.Name,24);
             if(cartAbandonmentTime < 1)
@@ -48,8 +51,9 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
             var startDateTime = dateTime.AddHours(-cartAbandonmentTime);
             var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
             {
-                ModifiedEndDate = startDateTime,
-                Skip = 0
+                ModifiedStartDate = startDateTime,
+                Skip = 0,
+                ResponseGroup = response.ToString()
             };
             var shoppingCarts = await _searchService.SearchAsync(shoppingCartSearchCritera);
             var carts = shoppingCarts.Results;

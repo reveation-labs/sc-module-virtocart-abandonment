@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Antlr4.Runtime.Misc;
 using EntityFrameworkCore.Triggers;
 using Humanizer;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,9 @@ using VirtoCommerce.NotificationsModule.Core.Extensions;
 using VirtoCommerce.NotificationsModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Model.Search;
 using VirtoCommerce.NotificationsModule.Core.Services;
+using VirtoCommerce.OrdersModule.Core.Model;
+using VirtoCommerce.OrdersModule.Core.Model.Search;
+using VirtoCommerce.OrdersModule.Data.Services;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.Extensions;
@@ -32,33 +36,38 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
         private readonly ICrudService<Store> _crudService;
         private readonly ISettingsManager _settingsManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ISettingsSearchService _settingsSearchService;
         private readonly INotificationMessageSearchService _notificationMessageSearchService;
-        public SendCartReminderEmailNotification(INotificationSender notificationSender, ICrudService<Store> crudService,
-                                                       ISettingsManager settingsManager, UserManager<ApplicationUser> userManager,
-                                                       INotificationSearchService notificationSearchService,
-                                                       ISettingsSearchService settingsSearchService, INotificationMessageSearchService notificationMessageSearchService)
+        private readonly ICustomerOrderBuilder _customerOrderBuilder;
+        public SendCartReminderEmailNotification(
+            INotificationSender notificationSender,
+            ICrudService<Store> crudService,
+            ISettingsManager settingsManager,
+            UserManager<ApplicationUser> userManager,
+            INotificationSearchService notificationSearchService,
+            INotificationMessageSearchService notificationMessageSearchService,
+            ICustomerOrderBuilder customerOrderBuilder)
         {
             _notificationSender = notificationSender;
             _crudService = crudService;
             _settingsManager = settingsManager;
             _notificationSearchService = notificationSearchService;
             _userManager = userManager;
-            _settingsSearchService = settingsSearchService;
             _notificationMessageSearchService = notificationMessageSearchService;
+            _customerOrderBuilder = customerOrderBuilder;
         }
 
         public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts)
         {
+            var shoppingCartIds = shoppingCarts.Select(x => x.Id).ToList();
             var storeIds = shoppingCarts.Select(x => x.StoreId);
             var stores = await _crudService.GetAsync(storeIds.ToList(),StoreResponseGroup.StoreInfo.ToString());
             var searchNotification = new NotificationMessageSearchCriteria
             {
                 Take = 100,
-                NotificationType = "CartReminderEmailNotification"
-
+                NotificationType = "CartReminderEmailNotification",
             };
             var startDateTime = DateTime.Now.AddHours(-24);
+            // Get all Notifications Triggered and convert them from NotificationMessage Object to EmailNotificationMessage Object
             var oldNotifications = await _notificationMessageSearchService.SearchMessageAsync(searchNotification);
             var notificationList = new List<EmailNotificationMessage>();
             foreach(var oldNotification in oldNotifications.Results)
@@ -68,30 +77,41 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
 
             foreach (var shoppingCart in shoppingCarts)
             {
-                var checkNotified = notificationList.Where(x => x.To == shoppingCart.Addresses.First().Email);
-
-                if (checkNotified.Any(x => x.ModifiedDate > startDateTime))
+                if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress != null)
                 {
-                    throw new Exception("User Is Already Notified");
-                }
-                else
-                {
-                    var store = stores.Where(x => x.Id == shoppingCart.StoreId).First();
-                    var notifications = new List<EmailNotification>();
-                    var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
-                    if (notification != null)
+                    var anonymousUserEmail = shoppingCart.Shipments.First().DeliveryAddress.Email;
+                    var checkNotified = notificationList.Where(x => x.To == anonymousUserEmail).ToList();
+                    // Check if 24 hours is completed for cart abandonment
+                    if (checkNotified.Any(x => x.ModifiedDate > startDateTime))
                     {
-                        notification.LanguageCode = shoppingCart.LanguageCode;
-                        notification.ShoppingCart = shoppingCart;
-                        notifications.Add(notification);
-                        if (shoppingCart.Addresses != null)
+                        continue;
+                    }
+                    else
+                    {
+                        var store = stores.Where(x => x.Id == shoppingCart.StoreId).First();
+                        var notifications = new List<EmailNotification>();
+                        var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
+                        if (notification != null)
                         {
-                            notification.SetFromToMembers(store.Email, shoppingCart.Addresses.First().Email);
-                            await _notificationSender.SendNotificationAsync(notification);
-                        }
-                        else
-                        {
-                            throw new Exception("Customer Email not available");
+                            notification.LanguageCode = shoppingCart.LanguageCode;
+                            notification.ShoppingCart = shoppingCart;
+                            notifications.Add(notification);
+                            if (shoppingCart.IsAnonymous == true && anonymousUserEmail != null)
+                            {
+                                notification.SetFromToMembers(store.Email,anonymousUserEmail);
+                                await _notificationSender.SendNotificationAsync(notification);
+                            }
+                            else if (shoppingCart.IsAnonymous == false)
+                            {
+                                var userEmail = (await _userManager.FindByIdAsync(shoppingCart.CustomerId)).Email;
+                                notification.SetFromToMembers(store.Email, userEmail);
+                                await _notificationSender.SendNotificationAsync(notification);
+                            }
+
+                            else
+                            {
+                                throw new Exception("Customer Email not available");
+                            }
                         }
                     }
                 }
