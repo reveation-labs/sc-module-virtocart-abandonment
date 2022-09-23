@@ -19,7 +19,7 @@
         <owner>ReveationLabs</owner>
     </owners>
 
-    <projectUrl>https://github.com/VirtoCommerce/vc-module-cart-abandonment-reminder</projectUrl>
+    <projectUrl>https://github.com/reveation-labs/virto-cart-abandonment-module</projectUrl>
     <iconUrl>Modules/$(VirtoCommerce.CartAbandonmentReminder)/Content/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
