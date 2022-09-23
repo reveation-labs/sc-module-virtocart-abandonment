@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Tests
+namespace ReveationLabs.CartAbandonmentReminder.Tests
 {
     [Trait("Category", "Unit")]
     public class Test

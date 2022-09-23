@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using Hangfire;
 using VirtoCommerce.Platform.Core.Settings;
-using VirtoCommerce.CartAbandonmentReminder.Core;
-using VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs;
+using ReveationLabs.CartAbandonmentReminder.Core;
+using ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
+namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
 {
     public class BackgroundCartReminder
     {

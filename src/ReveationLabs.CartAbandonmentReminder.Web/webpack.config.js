@@ -33,7 +33,7 @@ module.exports = [
         devtool: false,
         plugins: [
             new webpack.SourceMapDevToolPlugin({
-                namespace: 'VirtoCommerce.CartAbandonmentReminder',
+                namespace: 'ReveationLabs.CartAbandonmentReminder',
             }),
             new CleanWebpackPlugin(rootPath, { verbose: true }),
             new MiniCssExtractPlugin({

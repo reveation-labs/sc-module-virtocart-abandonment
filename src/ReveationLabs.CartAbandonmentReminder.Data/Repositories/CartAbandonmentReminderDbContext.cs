@@ -1,7 +1,7 @@
 using EntityFrameworkCore.Triggers;
 using Microsoft.EntityFrameworkCore;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.Repositories
+namespace ReveationLabs.CartAbandonmentReminder.Data.Repositories
 {
     public class CartAbandonmentReminderDbContext : DbContextWithTriggers
     {

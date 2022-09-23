@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3638CB4-C495-49A4-BF8B-5B9B70FADE90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AE26D6E6-9053-426A-BA14-88E322DD8D32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED0F6418-366D-4898-A6DD-81EE9C8283F1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		module.ignore = module.ignore
+		README.md = README.md
+		VirtoCommerce.CartAbandonmentReminder.sln.DotSettings = VirtoCommerce.CartAbandonmentReminder.sln.DotSettings
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReveationLabs.CartAbandonmentReminder.Core", "src\ReveationLabs.CartAbandonmentReminder.Core\ReveationLabs.CartAbandonmentReminder.Core.csproj", "{A8D1D9B5-C756-4071-A856-AF7F4316B7F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReveationLabs.CartAbandonmentReminder.Data", "src\ReveationLabs.CartAbandonmentReminder.Data\ReveationLabs.CartAbandonmentReminder.Data.csproj", "{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReveationLabs.CartAbandonmentReminder.Web", "src\ReveationLabs.CartAbandonmentReminder.Web\ReveationLabs.CartAbandonmentReminder.Web.csproj", "{E443EFF4-25FB-4F38-BE79-B7D36D10292C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReveationLabs.CartAbandonmentReminder.Tests", "tests\ReveationLabs.CartAbandonmentReminder.Tests\ReveationLabs.CartAbandonmentReminder.Tests.csproj", "{4E4F4081-5523-478F-A55D-4C08E65E2D89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8D1D9B5-C756-4071-A856-AF7F4316B7F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D1D9B5-C756-4071-A856-AF7F4316B7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D1D9B5-C756-4071-A856-AF7F4316B7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D1D9B5-C756-4071-A856-AF7F4316B7F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E443EFF4-25FB-4F38-BE79-B7D36D10292C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E443EFF4-25FB-4F38-BE79-B7D36D10292C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E443EFF4-25FB-4F38-BE79-B7D36D10292C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E443EFF4-25FB-4F38-BE79-B7D36D10292C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4F4081-5523-478F-A55D-4C08E65E2D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4F4081-5523-478F-A55D-4C08E65E2D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4F4081-5523-478F-A55D-4C08E65E2D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4F4081-5523-478F-A55D-4C08E65E2D89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8D1D9B5-C756-4071-A856-AF7F4316B7F9} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{1E3697D2-BB6B-4068-A38A-DF4DB07D4DBB} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{E443EFF4-25FB-4F38-BE79-B7D36D10292C} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{4E4F4081-5523-478F-A55D-4C08E65E2D89} = {AE26D6E6-9053-426A-BA14-88E322DD8D32}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91DB72C1-9A08-4692-8E82-3C8F65C6B8DD}
+	EndGlobalSection
+EndGlobal

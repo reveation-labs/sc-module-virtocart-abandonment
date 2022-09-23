@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using VirtoCommerce.Platform.Core.Settings;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Core
+namespace ReveationLabs.CartAbandonmentReminder.Core
 {
     public static class ModuleConstants
     {

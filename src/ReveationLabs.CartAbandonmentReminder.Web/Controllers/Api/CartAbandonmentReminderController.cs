@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VirtoCommerce.CartAbandonmentReminder.Core;
+using ReveationLabs.CartAbandonmentReminder.Core;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Web.Controllers.Api
+namespace ReveationLabs.CartAbandonmentReminder.Web.Controllers.Api
 {
     [Route("api/cart-abandonment-reminder")]
     public class CartAbandonmentReminderController : Controller

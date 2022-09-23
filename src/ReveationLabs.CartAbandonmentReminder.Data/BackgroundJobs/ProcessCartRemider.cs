@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
-using VirtoCommerce.CartAbandonmentReminder.Core;
-using VirtoCommerce.CartAbandonmentReminder.Core.Services;
+using ReveationLabs.CartAbandonmentReminder.Core;
+using ReveationLabs.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.Platform.Core.GenericCrud;
@@ -11,7 +11,7 @@ using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Model.Search;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
+namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
 {
     public class ProcessCartRemider
     {

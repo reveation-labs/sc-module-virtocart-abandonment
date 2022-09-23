@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using VirtoCommerce.CartAbandonmentReminder.Core.Services;
+using ReveationLabs.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Extensions;
 using VirtoCommerce.NotificationsModule.Core.Model;
@@ -13,7 +13,7 @@ using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.StoreModule.Core.Model;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
+namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
 {
     public class SendCartReminderEmailNotification : ISendCartReminderEmailNotification
     {

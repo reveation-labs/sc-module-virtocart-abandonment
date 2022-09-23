@@ -18,7 +18,7 @@ angular.module(moduleName, [])
                             var newBlade = {
                                 id: 'blade1',
                                 controller: 'CartAbandonmentReminder.helloWorldController',
-                                template: 'Modules/$(VirtoCommerce.CartAbandonmentReminder)/Scripts/blades/hello-world.html',
+                                template: 'Modules/$(ReveationLabs.CartAbandonmentReminder)/Scripts/blades/hello-world.html',
                                 isClosingDisabled: true,
                             };
                             bladeNavigationService.showBlade(newBlade);

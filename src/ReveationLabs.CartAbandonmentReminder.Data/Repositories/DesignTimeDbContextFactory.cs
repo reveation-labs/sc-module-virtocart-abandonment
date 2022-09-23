@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.Repositories
+namespace ReveationLabs.CartAbandonmentReminder.Data.Repositories
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CartAbandonmentReminderDbContext>
     {

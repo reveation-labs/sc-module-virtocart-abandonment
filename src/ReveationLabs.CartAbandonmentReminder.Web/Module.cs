@@ -6,15 +6,15 @@ using Microsoft.Extensions.DependencyInjection;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.Platform.Core.Settings;
-using VirtoCommerce.CartAbandonmentReminder.Core;
-using VirtoCommerce.CartAbandonmentReminder.Data.Repositories;
+using ReveationLabs.CartAbandonmentReminder.Core;
+using ReveationLabs.CartAbandonmentReminder.Data.Repositories;
 using VirtoCommerce.StoreModule.Core.Model;
-using VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs;
+using ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs;
 using VirtoCommerce.NotificationsModule.Core.Services;
-using VirtoCommerce.CartAbandonmentReminder.Data.Notifications;
-using VirtoCommerce.CartAbandonmentReminder.Core.Services;
+using ReveationLabs.CartAbandonmentReminder.Data.Notifications;
+using ReveationLabs.CartAbandonmentReminder.Core.Services;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Web
+namespace ReveationLabs.CartAbandonmentReminder.Web
 {
     public class Module : IModule, IHasConfiguration
     {

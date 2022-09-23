@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VirtoCommerce.CartAbandonmentReminder.Core\VirtoCommerce.CartAbandonmentReminder.Core.csproj" />
-    <ProjectReference Include="..\VirtoCommerce.CartAbandonmentReminder.Data\VirtoCommerce.CartAbandonmentReminder.Data.csproj" />
+    <ProjectReference Include="..\ReveationLabs.CartAbandonmentReminder.Core\ReveationLabs.CartAbandonmentReminder.Core.csproj" />
+    <ProjectReference Include="..\ReveationLabs.CartAbandonmentReminder.Data\ReveationLabs.CartAbandonmentReminder.Data.csproj" />
   </ItemGroup>
 
 </Project>

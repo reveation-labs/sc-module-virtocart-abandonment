@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Model;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Core.Services
+namespace ReveationLabs.CartAbandonmentReminder.Core.Services
 {
     public interface ISendCartReminderEmailNotification
     {

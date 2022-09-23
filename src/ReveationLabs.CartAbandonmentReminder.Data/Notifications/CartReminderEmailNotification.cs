@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Model;
 
-namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
+namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
 {
     public class CartReminderEmailNotification : EmailNotification
     {

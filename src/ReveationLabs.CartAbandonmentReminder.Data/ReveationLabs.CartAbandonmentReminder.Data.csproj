@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VirtoCommerce.CartAbandonmentReminder.Core\VirtoCommerce.CartAbandonmentReminder.Core.csproj" />
+    <ProjectReference Include="..\ReveationLabs.CartAbandonmentReminder.Core\ReveationLabs.CartAbandonmentReminder.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
