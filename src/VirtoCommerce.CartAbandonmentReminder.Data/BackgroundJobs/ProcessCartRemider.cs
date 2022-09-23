@@ -39,7 +39,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
         {
             var response = CartResponseGroup.Full;
             var dateTime = DateTime.Now;
-            var storeSearch = await _storeSearchService.SearchAsync(new StoreSearchCriteria { Skip = 0 });
+            var storeSearch = await _storeSearchService.SearchAsync(new StoreSearchCriteria { Skip = 0,Take = 1000 });
             var stores = storeSearch.Results.ToList();
             foreach (var store in stores)
             {
@@ -58,6 +58,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
                         Skip = 0,
                         ResponseGroup = response.ToString(),
                         StoreId = store.Id,
+                        Take = 1000
                     };
                     var shoppingCarts = await _cartSearchService.SearchAsync(shoppingCartSearchCritera);
                     var carts = shoppingCarts.Results;
