@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using StackExchange.Redis;
-using VirtoCommerce.CartAbandonmentReminder.Core;
 using VirtoCommerce.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Extensions;
@@ -25,21 +22,18 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
         private readonly ICrudService<Store> _crudService;
         private readonly ISettingsManager _settingsManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly INotificationMessageSearchService _notificationMessageSearchService;
         public SendCartReminderEmailNotification(
             INotificationSender notificationSender,
             ICrudService<Store> crudService,
             ISettingsManager settingsManager,
             UserManager<ApplicationUser> userManager,
-            INotificationSearchService notificationSearchService,
-            INotificationMessageSearchService notificationMessageSearchService)
+            INotificationSearchService notificationSearchService)
         {
             _notificationSender = notificationSender;
             _crudService = crudService;
             _settingsManager = settingsManager;
             _notificationSearchService = notificationSearchService;
             _userManager = userManager;
-            _notificationMessageSearchService = notificationMessageSearchService;
         }
 
         public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store,bool isAnonymousUserAllowed,bool isLoginUserAllowed)
