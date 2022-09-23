@@ -20,12 +20,12 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
             var processJobEnable = await _settingsManager.GetValueAsync(ModuleConstants.Settings.General.CartAbandonmentReminderEnabled.Name, true);
             if (processJobEnable)
             {
-                var cronExpression = _settingsManager.GetValue(ModuleConstants.Settings.General.CronExpression.Name, "0/5 * * * *");
+                var cronExpression = _settingsManager.GetValue(ModuleConstants.Settings.General.CronExpression.Name, "0 0 */1 * *");
                 RecurringJob.AddOrUpdate<ProcessCartRemider>("ProcessCartRemiderJob", x => x.Process(), cronExpression);
             }
             else
             {
-                RecurringJob.RemoveIfExists("ProcessSubscriptionJob");
+                RecurringJob.RemoveIfExists("ProcessCartRemiderJob");
             }
         }
     }

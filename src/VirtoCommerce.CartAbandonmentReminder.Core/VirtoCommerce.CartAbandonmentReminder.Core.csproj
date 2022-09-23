@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="VirtoCommerce.CartModule.Core" Version="3.201.0" />
+    <PackageReference Include="VirtoCommerce.StoreModule.Core" Version="3.206.0" />
     <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.200.0" />
   </ItemGroup>
 

@@ -8,19 +8,24 @@ using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Settings;
+using VirtoCommerce.StoreModule.Core.Model;
+using VirtoCommerce.StoreModule.Core.Model.Search;
 
 namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
 {
     public class ProcessCartRemider
     {
-        ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> _searchService;
+        private readonly ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> _cartSearchService;
+        private readonly ISearchService<StoreSearchCriteria, StoreSearchResult, Store> _storeSearchService;
         private readonly ISendCartReminderEmailNotification _sendCartReminderEmailNotification;
-        private readonly ISettingsManager _settingsManager;
-        public ProcessCartRemider(ISendCartReminderEmailNotification sendCartReminderEmailNotification, ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> searchService,ISettingsManager settingsManager)
+        public ProcessCartRemider(
+            ISendCartReminderEmailNotification sendCartReminderEmailNotification,
+            ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> cartSearchService,
+            ISearchService<StoreSearchCriteria, StoreSearchResult, Store> storeSearchService)
         {
             _sendCartReminderEmailNotification = sendCartReminderEmailNotification;
-            _searchService = searchService;
-            _settingsManager = settingsManager;
+            _cartSearchService = cartSearchService;
+            _storeSearchService = storeSearchService;
         }
 
         [DisableConcurrentExecution(10)]
@@ -34,21 +39,34 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
         {
             var response = CartResponseGroup.Full;
             var dateTime = DateTime.Now;
-            var cartAbandonmentStartTime = _settingsManager.GetValue(ModuleConstants.Settings.CartAbandonmentTime.CartAbandonmentStartTime.Name,24);
-            var cartAbandonmentEndTime = _settingsManager.GetValue(ModuleConstants.Settings.CartAbandonmentTime.CartAbandonmentEndTime.Name,24);
-            var startDateTime = dateTime.AddHours(-cartAbandonmentStartTime);
-            var endDateTime = dateTime.AddHours(-cartAbandonmentEndTime);
-            var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
+            var storeSearch = await _storeSearchService.SearchAsync(new StoreSearchCriteria { Skip = 0 });
+            var stores = storeSearch.Results.ToList();
+            foreach (var store in stores)
             {
-                CreatedStartDate = startDateTime,
-                ModifiedEndDate = endDateTime,
-                Skip = 0,
-                ResponseGroup = response.ToString()
-            };
-            var shoppingCarts = await _searchService.SearchAsync(shoppingCartSearchCritera);
-            var carts = shoppingCarts.Results;
-            await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(carts.ToList());
+                var startDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentStartDay.Name, 2);
+                var endDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentEndDay.Name, 1);
+                var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name, false);
+                var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name, false);
+                if(isAnonymousUserAllowed || isLoginUserAllowed)
+                {
+                    var startDateTime = dateTime.AddDays(-startDateTimeSetting);
+                    var endDateTime = dateTime.AddDays(-endDateTimeSetting);
+                    var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
+                    {
+                        CreatedStartDate = startDateTime,
+                        ModifiedEndDate = endDateTime,
+                        Skip = 0,
+                        ResponseGroup = response.ToString(),
+                        StoreId = store.Id,
+                    };
+                    var shoppingCarts = await _cartSearchService.SearchAsync(shoppingCartSearchCritera);
+                    var carts = shoppingCarts.Results;
+                    if(shoppingCarts.TotalCount > 0)
+                    {
+                        await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(carts.ToList(),store);
+                    }
+                }
+            }
         }
-
     }
 }

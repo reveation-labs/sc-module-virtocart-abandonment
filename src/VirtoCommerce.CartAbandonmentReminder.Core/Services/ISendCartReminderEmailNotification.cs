@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
-using VirtoCommerce.CartModule.Core.Model.Search;
+using VirtoCommerce.StoreModule.Core.Model;
 
 namespace VirtoCommerce.CartAbandonmentReminder.Core.Services
 {
     public interface ISendCartReminderEmailNotification
     {
-        Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts);
+        Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store);
     }
 }

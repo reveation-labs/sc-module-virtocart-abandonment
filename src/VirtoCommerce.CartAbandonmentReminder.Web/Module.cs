@@ -45,6 +45,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Web
             // Register settings
             var settingsRegistrar = serviceProvider.GetRequiredService<ISettingsRegistrar>();
             settingsRegistrar.RegisterSettings(ModuleConstants.Settings.AllSettings, ModuleInfo.Id);
+            settingsRegistrar.RegisterSettings(ModuleConstants.Settings.StoreLevelSettings, ModuleInfo.Id);
             settingsRegistrar.RegisterSettingsForType(ModuleConstants.Settings.StoreLevelSettings, typeof(Store).Name);
 
             var notificationregistrar = appBuilder.ApplicationServices.GetService<INotificationRegistrar>();

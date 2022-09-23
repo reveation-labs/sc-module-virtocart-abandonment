@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using StackExchange.Redis;
+using VirtoCommerce.CartAbandonmentReminder.Core;
 using VirtoCommerce.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Extensions;
 using VirtoCommerce.NotificationsModule.Core.Model;
-using VirtoCommerce.NotificationsModule.Core.Model.Search;
 using VirtoCommerce.NotificationsModule.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.GenericCrud;
@@ -41,63 +42,35 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
             _notificationMessageSearchService = notificationMessageSearchService;
         }
 
-        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts)
+        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store)
         {
-            var shoppingCartIds = shoppingCarts.Select(x => x.Id).ToList();
-            var storeIds = shoppingCarts.Select(x => x.StoreId);
-            var stores = await _crudService.GetAsync(storeIds.ToList(),StoreResponseGroup.StoreInfo.ToString());
-            var searchNotification = new NotificationMessageSearchCriteria
-            {
-                Take = 100,
-                NotificationType = "CartReminderEmailNotification",
-            };
-            var startDateTime = DateTime.Now.AddHours(-24);
-            // Get all Notifications Triggered and convert them from NotificationMessage Object to EmailNotificationMessage Object
-            var oldNotifications = await _notificationMessageSearchService.SearchMessageAsync(searchNotification);
-            var notificationList = new List<EmailNotificationMessage>();
-            foreach(var oldNotification in oldNotifications.Results)
-            {
-                notificationList.Add((EmailNotificationMessage)oldNotification);
-            }
+            var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name,false);
+            var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name,false);
 
             foreach (var shoppingCart in shoppingCarts)
             {
-                if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress != null)
+                var notifications = new List<EmailNotification>();
+                var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
+                if (notification != null)
                 {
-                    var anonymousUserEmail = shoppingCart.Shipments.First().DeliveryAddress.Email;
-                    var checkNotified = notificationList.Where(x => x.To == anonymousUserEmail).ToList();
-                    // Check if 24 hours is completed for cart abandonment
-                    if (checkNotified.Any(x => x.ModifiedDate > startDateTime))
+                    if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress is not null && isAnonymousUserAllowed)
                     {
-                        continue;
+                        var anonymousUserEmail = shoppingCart.Shipments.First().DeliveryAddress.Email;
+                        notification.LanguageCode = shoppingCart.LanguageCode;
+                        notification.ShoppingCart = shoppingCart;
+                        notifications.Add(notification);
+                        notification.SetFromToMembers(store.Email,anonymousUserEmail);
+                        await _notificationSender.SendNotificationAsync(notification);
                     }
-                    else
-                    {
-                        var store = stores.Where(x => x.Id == shoppingCart.StoreId).First();
-                        var notifications = new List<EmailNotification>();
-                        var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
-                        if (notification != null)
-                        {
-                            notification.LanguageCode = shoppingCart.LanguageCode;
-                            notification.ShoppingCart = shoppingCart;
-                            notifications.Add(notification);
-                            if (shoppingCart.IsAnonymous == true && anonymousUserEmail != null)
-                            {
-                                notification.SetFromToMembers(store.Email,anonymousUserEmail);
-                                await _notificationSender.SendNotificationAsync(notification);
-                            }
-                            else if (shoppingCart.IsAnonymous == false)
-                            {
-                                var userEmail = (await _userManager.FindByIdAsync(shoppingCart.CustomerId)).Email;
-                                notification.SetFromToMembers(store.Email, userEmail);
-                                await _notificationSender.SendNotificationAsync(notification);
-                            }
 
-                            else
-                            {
-                                throw new Exception("Customer Email not available");
-                            }
-                        }
+                    if (!shoppingCart.IsAnonymous && isLoginUserAllowed)
+                    {
+                        var userEmail = (await _userManager.FindByIdAsync(shoppingCart.CustomerId)).Email;
+                        notification.LanguageCode = shoppingCart.LanguageCode;
+                        notification.ShoppingCart = shoppingCart;
+                        notifications.Add(notification);
+                        notification.SetFromToMembers(store.Email, userEmail);
+                        await _notificationSender.SendNotificationAsync(notification);
                     }
                 }
             }

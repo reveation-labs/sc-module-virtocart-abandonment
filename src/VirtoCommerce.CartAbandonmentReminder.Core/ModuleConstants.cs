@@ -38,12 +38,11 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
                     DefaultValue = false,
                 };
 
-                public static readonly SettingDescriptor CronExpression = new SettingDescriptor
+                public static readonly SettingDescriptor CronExpression = new ()
                 {
                     Name = "CartAbandonmentReminder.CronExpression",
                     GroupName = "CartAbandonmentReminder|General",
-                    ValueType = SettingValueType.ShortText,
-                    DefaultValue = "0 */1 * * *"
+                    ValueType = SettingValueType.ShortText
                 };
 
                 public static IEnumerable<SettingDescriptor> AllGeneralSettings
@@ -55,31 +54,47 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
                     }
                 }
             }
-            public static class CartAbandonmentTime
+            public static class CartAbandonmentStoreSettings
             {
-                public static readonly SettingDescriptor CartAbandonmentStartTime = new SettingDescriptor
+                public static readonly SettingDescriptor CartAbandonmentStartDay = new()
                 {
-                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
+                    Name = "CartAbandonmentReminder.CartAbandonmentStartDay",
                     GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
                     ValueType = SettingValueType.Integer
                 };
 
-                public static readonly SettingDescriptor CartAbandonmentEndTime = new SettingDescriptor
+                public static readonly SettingDescriptor CartAbandonmentEndDay = new()
                 {
-                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
+                    Name = "CartAbandonmentReminder.CartAbandonmentEndDay",
                     GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
                     ValueType = SettingValueType.Integer
                 };
 
+                public static readonly SettingDescriptor RemindUserAnonymous = new()
+                {
+                    Name = "CartAbandonmentReminder.RemindUserAnonymous",
+                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
+                    ValueType = SettingValueType.Boolean
+                };
+
+                public static readonly SettingDescriptor RemindUserLogin = new()
+                {
+                    Name = "CartAbandonmentReminder.RemindUserLogin",
+                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
+                    ValueType = SettingValueType.Boolean
+                };
                 public static IEnumerable<SettingDescriptor> StoreLevelSettings
                 {
                     get
                     {
-                        yield return CartAbandonmentStartTime;
-                        yield return CartAbandonmentEndTime;
+                        yield return CartAbandonmentStartDay;
+                        yield return CartAbandonmentEndDay;
+                        yield return RemindUserAnonymous;
+                        yield return RemindUserLogin;
                     }
                 }
             }
+
             public static IEnumerable<SettingDescriptor> AllSettings
             {
                 get
@@ -91,7 +106,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
             {
                 get
                 {
-                    return CartAbandonmentTime.StoreLevelSettings;
+                    return CartAbandonmentStoreSettings.StoreLevelSettings;
                 }
             }
         }
