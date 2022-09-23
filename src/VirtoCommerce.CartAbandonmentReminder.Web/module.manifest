@@ -27,7 +27,7 @@
     <moduleType>VirtoCommerce.CartAbandonmentReminder.Web.Module, VirtoCommerce.CartAbandonmentReminder.Web</moduleType>
 
     <releaseNotes>First version.</releaseNotes>
-    <copyright>Copyright © 2022 VirtoCommerce. All rights reserved</copyright>
+    <copyright>Copyright © 2022 ReveationLabs. All rights reserved</copyright>
     <tags>extension module</tags>
     <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
 </module>
