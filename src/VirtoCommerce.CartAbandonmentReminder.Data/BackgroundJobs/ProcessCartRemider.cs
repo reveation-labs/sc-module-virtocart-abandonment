@@ -1,22 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
-using Microsoft.AspNetCore.Server.IIS.Core;
-using Microsoft.VisualBasic;
 using VirtoCommerce.CartAbandonmentReminder.Core;
 using VirtoCommerce.CartAbandonmentReminder.Core.Services;
-using VirtoCommerce.CartAbandonmentReminder.Data.Notifications;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Model.Search;
-using VirtoCommerce.CartModule.Core.Services;
-using VirtoCommerce.CartModule.Data.Repositories;
-using VirtoCommerce.CartModule.Data.Services;
-using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Settings;
-using VirtoCommerce.StoreModule.Core.Model;
 
 namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
 {
@@ -43,15 +34,14 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
         {
             var response = CartResponseGroup.Full;
             var dateTime = DateTime.Now;
-            var cartAbandonmentTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CartAbandonmentTime.Name,24);
-            if(cartAbandonmentTime < 1)
-            {
-                throw new Exception("Time should be greater then 0");
-            }
-            var startDateTime = dateTime.AddHours(-cartAbandonmentTime);
+            var cartAbandonmentStartTime = _settingsManager.GetValue(ModuleConstants.Settings.CartAbandonmentTime.CartAbandonmentStartTime.Name,24);
+            var cartAbandonmentEndTime = _settingsManager.GetValue(ModuleConstants.Settings.CartAbandonmentTime.CartAbandonmentEndTime.Name,24);
+            var startDateTime = dateTime.AddHours(-cartAbandonmentStartTime);
+            var endDateTime = dateTime.AddHours(-cartAbandonmentEndTime);
             var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
             {
-                ModifiedStartDate = startDateTime,
+                CreatedStartDate = startDateTime,
+                ModifiedEndDate = endDateTime,
                 Skip = 0,
                 ResponseGroup = response.ToString()
             };

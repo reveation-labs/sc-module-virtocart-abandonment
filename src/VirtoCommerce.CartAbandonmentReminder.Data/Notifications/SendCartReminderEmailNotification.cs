@@ -1,27 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Antlr4.Runtime.Misc;
-using EntityFrameworkCore.Triggers;
-using Humanizer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using VirtoCommerce.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
-using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.NotificationsModule.Core.Extensions;
 using VirtoCommerce.NotificationsModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Model.Search;
 using VirtoCommerce.NotificationsModule.Core.Services;
-using VirtoCommerce.OrdersModule.Core.Model;
-using VirtoCommerce.OrdersModule.Core.Model.Search;
-using VirtoCommerce.OrdersModule.Data.Services;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.Platform.Core.Events;
-using VirtoCommerce.Platform.Core.Extensions;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.Platform.Core.Settings;
@@ -37,15 +25,13 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
         private readonly ISettingsManager _settingsManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly INotificationMessageSearchService _notificationMessageSearchService;
-        private readonly ICustomerOrderBuilder _customerOrderBuilder;
         public SendCartReminderEmailNotification(
             INotificationSender notificationSender,
             ICrudService<Store> crudService,
             ISettingsManager settingsManager,
             UserManager<ApplicationUser> userManager,
             INotificationSearchService notificationSearchService,
-            INotificationMessageSearchService notificationMessageSearchService,
-            ICustomerOrderBuilder customerOrderBuilder)
+            INotificationMessageSearchService notificationMessageSearchService)
         {
             _notificationSender = notificationSender;
             _crudService = crudService;
@@ -53,7 +39,6 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
             _notificationSearchService = notificationSearchService;
             _userManager = userManager;
             _notificationMessageSearchService = notificationMessageSearchService;
-            _customerOrderBuilder = customerOrderBuilder;
         }
 
         public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts)

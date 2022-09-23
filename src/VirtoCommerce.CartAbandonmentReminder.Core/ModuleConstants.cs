@@ -45,25 +45,38 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
                     ValueType = SettingValueType.ShortText,
                     DefaultValue = "0 */1 * * *"
                 };
-                public static readonly SettingDescriptor CartAbandonmentTime = new SettingDescriptor
-                {
-                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
-                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
-                    ValueType = SettingValueType.Integer
-                };
-                public static IEnumerable<SettingDescriptor> StoreLevelSettings
-                {
-                    get
-                    {
-                        yield return CartAbandonmentTime;
-                    }
-                }
+
                 public static IEnumerable<SettingDescriptor> AllGeneralSettings
                 {
                     get
                     {
                         yield return CartAbandonmentReminderEnabled;
                         yield return CronExpression;
+                    }
+                }
+            }
+            public static class CartAbandonmentTime
+            {
+                public static readonly SettingDescriptor CartAbandonmentStartTime = new SettingDescriptor
+                {
+                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
+                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
+                    ValueType = SettingValueType.Integer
+                };
+
+                public static readonly SettingDescriptor CartAbandonmentEndTime = new SettingDescriptor
+                {
+                    Name = "CartAbandonmentReminder.CartAbandonmentTime",
+                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
+                    ValueType = SettingValueType.Integer
+                };
+
+                public static IEnumerable<SettingDescriptor> StoreLevelSettings
+                {
+                    get
+                    {
+                        yield return CartAbandonmentStartTime;
+                        yield return CartAbandonmentEndTime;
                     }
                 }
             }
@@ -78,7 +91,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core
             {
                 get
                 {
-                    return General.StoreLevelSettings;
+                    return CartAbandonmentTime.StoreLevelSettings;
                 }
             }
         }
