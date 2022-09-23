@@ -7,6 +7,6 @@ namespace VirtoCommerce.CartAbandonmentReminder.Core.Services
 {
     public interface ISendCartReminderEmailNotification
     {
-        Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store);
+        Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store,bool isAnonymousUserAllowed, bool isLoginUserAllowed);
     }
 }

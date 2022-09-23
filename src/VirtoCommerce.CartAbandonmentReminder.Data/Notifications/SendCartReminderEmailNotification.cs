@@ -42,11 +42,8 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.Notifications
             _notificationMessageSearchService = notificationMessageSearchService;
         }
 
-        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store)
+        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store,bool isAnonymousUserAllowed,bool isLoginUserAllowed)
         {
-            var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name,false);
-            var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name,false);
-
             foreach (var shoppingCart in shoppingCarts)
             {
                 var notifications = new List<EmailNotification>();

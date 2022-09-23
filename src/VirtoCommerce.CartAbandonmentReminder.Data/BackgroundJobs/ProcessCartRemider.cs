@@ -64,7 +64,7 @@ namespace VirtoCommerce.CartAbandonmentReminder.Data.BackgroundJobs
                     var carts = shoppingCarts.Results;
                     if(shoppingCarts.TotalCount > 0)
                     {
-                        await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(carts.ToList(),store);
+                        await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(carts.ToList(),store,isAnonymousUserAllowed,isLoginUserAllowed);
                     }
                 }
             }
