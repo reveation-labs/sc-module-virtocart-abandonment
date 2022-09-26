@@ -17,7 +17,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
 
         public async Task ConfigureProcessCartReminderJob()
         {
-            var processJobEnable = await _settingsManager.GetValueAsync(ModuleConstants.Settings.General.CartAbandonmentReminderEnabled.Name, true);
+            var processJobEnable = await _settingsManager.GetValueAsync(ModuleConstants.Settings.General.CartAbandonmentReminderEnabled.Name, false);
             if (processJobEnable)
             {
                 var cronExpression = _settingsManager.GetValue(ModuleConstants.Settings.General.CronExpression.Name, "0 0 */1 * *");

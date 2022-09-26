@@ -35,7 +35,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
             _notificationSearchService = notificationSearchService;
             _userManager = userManager;
         }
-
+        // Method to trigger email notification for all shopping carts
         public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store,bool isAnonymousUserAllowed,bool isLoginUserAllowed)
         {
             foreach (var shoppingCart in shoppingCarts)
@@ -44,6 +44,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
                 var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
                 if (notification != null)
                 {
+                    //if user is anonymous and we have email id available then it will use this to trigegr email
                     if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress is not null && isAnonymousUserAllowed)
                     {
                         var anonymousUserEmail = shoppingCart.Shipments.First().DeliveryAddress.Email;
@@ -54,6 +55,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
                         await _notificationSender.SendNotificationAsync(notification);
                     }
 
+                    // if login user have created cart then we will trigger this email
                     if (!shoppingCart.IsAnonymous && isLoginUserAllowed)
                     {
                         var userEmail = (await _userManager.FindByIdAsync(shoppingCart.CustomerId)).Email;

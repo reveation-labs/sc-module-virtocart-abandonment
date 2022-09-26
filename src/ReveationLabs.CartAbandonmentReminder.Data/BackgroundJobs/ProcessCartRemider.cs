@@ -43,6 +43,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
             var stores = storeSearch.Results.ToList();
             foreach (var store in stores)
             {
+                // store level settings
                 var startDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentStartDay.Name, 2);
                 var endDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentEndDay.Name, 1);
                 var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name, false);
@@ -60,6 +61,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
                         StoreId = store.Id,
                         Take = 1000
                     };
+                    // get shopping carts based on search criteria
                     var shoppingCarts = await _cartSearchService.SearchAsync(shoppingCartSearchCritera);
                     var carts = shoppingCarts.Results;
                     if(shoppingCarts.TotalCount > 0)
