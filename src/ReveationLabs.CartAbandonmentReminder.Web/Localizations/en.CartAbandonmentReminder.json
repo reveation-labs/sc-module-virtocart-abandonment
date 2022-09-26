@@ -40,5 +40,11 @@
         "description": "Enable This If you want to send notification to login user"
       }
     }
+  },
+  "notificationTypes": {
+    "CartReminderEmailNotification": {
+      "displayName": "Cart Reminder Email Notification",
+      "description": "This notification sends email to customer to remind their abandon carts"
+    }
   }
 }
