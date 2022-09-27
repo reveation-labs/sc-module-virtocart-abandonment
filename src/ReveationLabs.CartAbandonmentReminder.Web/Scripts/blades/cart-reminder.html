@@ -1,0 +1,99 @@
+﻿<div class="blade-content" style="width: 100%">
+    <div class="blade-inner">
+            <table class="table" id="carts" style="margin-bottom: 90px">
+                <thead>
+                    <tr>
+                        <th class="table-col __proudct-img align-center">
+                            Customer Name
+                        </th>
+                        <th class="table-col align-center">
+                            IsAnonymous 
+                        </th>
+                        <th class="table-col align-center">
+                            Store
+                        </th>
+                        <th class="table-col align-center">
+                            Email 
+                        </th>
+                        <th class="table-col align-center">
+                            Contact No. 
+                        </th>
+                        <th class="table-col align-center">
+                            Created
+                        </th>
+                        <th class="table-col align-center">
+                            Total
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="cart in carts" ng-click="openCartBlade(cart)">
+                    <tr class="table-item" ng-class="{'__selected': $index === blade.selectedNodeId}"
+                        ng-click="blade.selectedNodeId = $index">
+                        <td class="table-col align-center">
+                            <span ng-bind="cart.customerName"></span>
+                        </td>
+                        <td class="table-col align-center">
+                            <span ng-bind="cart.isAnonymous"></span>
+                        </td>
+                        <td class="table-col align-center">
+                            <span ng-bind="cart.storeId"></span>
+                        </td>
+                        <td class="table-col align-center">
+                            <span class="list-price" ng-repeat="shipment in cart.shipments">
+                                <span ng-bind="shipment.deliveryAddress.email"></span>
+                            </span>
+                        </td>
+                        <td class="table-col align-center">
+                            <span class="list-price" ng-repeat="shipment in cart.shipments">
+                                <span ng-bind="shipment.deliveryAddress.phone"></span>
+                            </span>
+                        </td>
+                        <td class="table-col align-center">
+                            <span class="list-price" ng-bind="cart.createdDate">
+                                
+                            </span>
+                        </td>
+                        <td class="table-col __total align-center">
+                            <span class="list-price" ng-bind="cart.total">
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="blade-static __bottom" ng-if="pageSettings.itemsPerPageCount < pageSettings.totalItems" ng-include="'pagerTemplate.html'" ng-click="blade.refresh()"></div>
+</div>
+
+    <style>
+        .menu-ico {
+            display: block;
+            font-size: 18px;
+            margin: 0 0 3px;
+        }
+
+        .align-center {
+            text-align: center !important;
+        }
+
+        .download-btn {
+            background: #fbfdfe;
+            border: 0px;
+        }
+
+        .download-btn-space {
+            display: inline-block;
+            padding-left: 20px;
+        }
+
+        .order-box {
+            background: #fbfdfe;
+            box-sizing: border-box;
+            box-shadow: 0 0 0 2px #dee9f0 inset;
+            padding: 2px;
+            margin: 15px;
+        }
+
+        .vertical--center {
+            vertical-align: sub;
+        }
+    </style>

@@ -1,4 +1,10 @@
-angular.module('CartAbandonmentReminder')
-    .factory('CartAbandonmentReminder.webApi', ['$resource', function ($resource) {
-        return $resource('api/cart-abandonment-reminder');
+    var CartAbandonmentReminder = angular.module('CartAbandonmentReminder');
+ 
+    CartAbandonmentReminder.service('cartAbandonmentReminderService', ['$http', function ($http, $localStorage) {
+        return {
+            search: function (criteria) {
+                return $http.post('api/cart-abandonment/search', criteria);
+            },
+        }
     }]);
+    

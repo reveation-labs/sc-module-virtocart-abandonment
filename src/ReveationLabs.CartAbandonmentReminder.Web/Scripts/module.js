@@ -17,8 +17,8 @@ angular.module(moduleName, [])
                         function (bladeNavigationService) {
                             var newBlade = {
                                 id: 'blade1',
-                                controller: 'CartAbandonmentReminder.helloWorldController',
-                                template: 'Modules/$(ReveationLabs.CartAbandonmentReminder)/Scripts/blades/hello-world.html',
+                                controller: 'CartAbandonmentReminder.CartReminderController',
+                                template: 'Modules/$(ReveationLabs.CartAbandonmentReminder)/Scripts/blades/cart-reminder.html',
                                 isClosingDisabled: true,
                             };
                             bladeNavigationService.showBlade(newBlade);

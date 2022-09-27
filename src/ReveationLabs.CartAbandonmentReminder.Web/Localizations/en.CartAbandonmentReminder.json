@@ -24,12 +24,12 @@
         "description": "CartAbandonmentReminder Cron"
       },
       "CartAbandonmentStartDay": {
-        "title": "Cart Abandonment Start Day",
-        "description": "Enter from when you want to send the cart reminder eg - if you enter 2 here we will send the reminder from 2 days ago till day"
+        "title": "Start Day",
+        "description": "Enter from when you want to send the cart reminder eg - if you enter 1 here we will send the cart reminders from yesterday to till end day"
       },
       "CartAbandonmentEndDay": {
-        "title": "Cart Abandonment End Day",
-        "description": "Enter till how many days ago you want to send the cart reminder eg - if you enter 1 here we will send the reminder from start day to yesterday"
+        "title": "End Day",
+        "description": "Enter till how many days ago you want to send the cart reminder eg - if you enter 2 here we will send the cart reminders from start day to 2 day ago"
       },
       "RemindUserAnonymous": {
         "title": "Remind User Anonymous",
