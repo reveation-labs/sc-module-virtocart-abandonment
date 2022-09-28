@@ -1,6 +1,16 @@
-<div class="blade-static">
-    <div class="form-group">
-        <p class="form-count">{{'platform.list.count' | translate}}: <span class="count">{{cartItems.length | number:0}}</span></p>
+<div class="blade-static" style="height: 32px;">
+    <div class="spacing-around">
+        <p>Email: 
+            <span ng-if="cart.email" class ="count" ng-bind="cart.email"></span>
+            <span ng-repeat="shipment in cart.shipments">
+            <span ng-if="shipment.deliveryAddress.email" class ="count" ng-bind="shipment.deliveryAddress.email"></span>
+        </span>
+        </p>
+        <p>Phone No: <span ng-repeat="shipment in cart.shipments">
+        <span class ="count" ng-bind="shipment.deliveryAddress.phone"></span>
+        </span></p>
+        <p>{{'platform.list.count' | translate}}: <span class="count">{{cart.items.length | number:0}}</span>
+        </p>
     </div>
 </div>
 <div class="blade-content __xlarge-wide">
@@ -18,12 +28,12 @@
                                 </label>
                             </th>
                             <th class="table-col __proudct-img">Item </th>
-                            <th class="table-col">quantity</th>
-                            <th class="table-col">price</th>
+                            <th class="table-col">Quantity</th>
+                            <th class="table-col">Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-item" ng-repeat-start="data in cartItems" ng-class="{'__selected': $index === blade.selectedNodeId}" ng-click='blade.selectedNodeId = $index'>
+                        <tr class="table-item" ng-repeat-start="data in cart.items" ng-class="{'__selected': $index === blade.selectedNodeId}" ng-click='blade.selectedNodeId = $index'>
                             <td class="table-col">
                                 <label class="form-control __checkbox">
                                     <input type="checkbox" ng-model="data.selected">
@@ -65,3 +75,11 @@
         </div>
     </div>
 </div>
+<style>
+    .spacing-around {
+        display: flex;
+        justify-content:space-between;
+        margin: 16px 32px 0px;
+    }
+
+</style>

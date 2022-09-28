@@ -4,7 +4,7 @@ angular.module('CartAbandonmentReminder')
     blade.isVisiblePrices = authService.checkPermission('order:read_prices');
 
     var selectedProducts = [];
-    $scope.cartItems = $scope.blade.currentEntities.items;
+    $scope.cart = $scope.blade.currentEntities;
 
     blade.refresh = function () {
         blade.isLoading = false;
