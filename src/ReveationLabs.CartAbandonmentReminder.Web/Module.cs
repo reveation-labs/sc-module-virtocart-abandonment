@@ -13,6 +13,10 @@ using ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs;
 using VirtoCommerce.NotificationsModule.Core.Services;
 using ReveationLabs.CartAbandonmentReminder.Data.Notifications;
 using ReveationLabs.CartAbandonmentReminder.Core.Services;
+using VirtoCommerce.CartModule.Core.Model.Search;
+using VirtoCommerce.CartModule.Core.Model;
+using VirtoCommerce.CartModule.Data.Services;
+using VirtoCommerce.Platform.Core.GenericCrud;
 
 namespace ReveationLabs.CartAbandonmentReminder.Web
 {
@@ -36,6 +40,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Web
             // Register services
             //serviceCollection.AddTransient<IMyService, MyService>();
             serviceCollection.AddTransient<BackgroundCartReminder>();
+            serviceCollection.AddTransient<IExtendShoppingCartSearchService, ExtendShoppingCartSearchService>();
             serviceCollection.AddTransient<ISendCartReminderEmailNotification,SendCartReminderEmailNotification>();
         }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReveationLabs.CartAbandonmentReminder.Core;
+using ReveationLabs.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.Platform.Core.GenericCrud;
@@ -13,9 +14,9 @@ namespace ReveationLabs.CartAbandonmentReminder.Web.Controllers.Api
     [Route("api/cart-abandonment")]
     public class CartAbandonmentReminderController : Controller
     {
-        private readonly ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> _cartSearchService;
+        private readonly IExtendShoppingCartSearchService _cartSearchService;
 
-        public CartAbandonmentReminderController(ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> cartSearchService)
+        public CartAbandonmentReminderController(IExtendShoppingCartSearchService cartSearchService)
         {
             _cartSearchService = cartSearchService;
         }
@@ -35,7 +36,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Web.Controllers.Api
             shoppingCartSearchCriteria.ResponseGroup = response.ToString();
             shoppingCartSearchCriteria.CreatedStartDate = startDateTime;
             shoppingCartSearchCriteria.CreatedEndDate = endDateTime;
-            var shoppingCarts = await _cartSearchService.SearchAsync(shoppingCartSearchCriteria);
+            var shoppingCarts = await _cartSearchService.SearchCartAsync(shoppingCartSearchCriteria);
 
             return shoppingCarts;
         }
