@@ -45,31 +45,25 @@ namespace ReveationLabs.CartAbandonmentReminder.Core
                     ValueType = SettingValueType.ShortText
                 };
 
+                public static readonly SettingDescriptor CronTime = new()
+                {
+                    Name = "CartAbandonmentReminder.CronTime",
+                    GroupName = "CartAbandonmentReminder|General",
+                    ValueType = SettingValueType.Integer
+                };
+
                 public static IEnumerable<SettingDescriptor> AllGeneralSettings
                 {
                     get
                     {
                         yield return CartAbandonmentReminderEnabled;
                         yield return CronExpression;
+                        yield return CronTime;
                     }
                 }
             }
             public static class CartAbandonmentStoreSettings
             {
-                public static readonly SettingDescriptor CartAbandonmentStartDay = new()
-                {
-                    Name = "CartAbandonmentReminder.CartAbandonmentStartDay",
-                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
-                    ValueType = SettingValueType.Integer
-                };
-
-                public static readonly SettingDescriptor CartAbandonmentEndDay = new()
-                {
-                    Name = "CartAbandonmentReminder.CartAbandonmentEndDay",
-                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
-                    ValueType = SettingValueType.Integer
-                };
-
                 public static readonly SettingDescriptor RemindUserAnonymous = new()
                 {
                     Name = "CartAbandonmentReminder.RemindUserAnonymous",
@@ -87,8 +81,6 @@ namespace ReveationLabs.CartAbandonmentReminder.Core
                 {
                     get
                     {
-                        yield return CartAbandonmentStartDay;
-                        yield return CartAbandonmentEndDay;
                         yield return RemindUserAnonymous;
                         yield return RemindUserLogin;
                     }

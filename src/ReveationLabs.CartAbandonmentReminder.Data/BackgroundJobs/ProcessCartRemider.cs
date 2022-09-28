@@ -8,6 +8,7 @@ using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Settings;
+using VirtoCommerce.Platform.Data.Settings;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Model.Search;
 
@@ -18,14 +19,17 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
         private readonly ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> _cartSearchService;
         private readonly ISearchService<StoreSearchCriteria, StoreSearchResult, Store> _storeSearchService;
         private readonly ISendCartReminderEmailNotification _sendCartReminderEmailNotification;
+        private readonly ISettingsManager _settingsManager;
         public ProcessCartRemider(
             ISendCartReminderEmailNotification sendCartReminderEmailNotification,
             ISearchService<ShoppingCartSearchCriteria, ShoppingCartSearchResult, ShoppingCart> cartSearchService,
-            ISearchService<StoreSearchCriteria, StoreSearchResult, Store> storeSearchService)
+            ISearchService<StoreSearchCriteria, StoreSearchResult, Store> storeSearchService,
+            ISettingsManager settingsManager)
         {
             _sendCartReminderEmailNotification = sendCartReminderEmailNotification;
             _cartSearchService = cartSearchService;
             _storeSearchService = storeSearchService;
+            _settingsManager = settingsManager;
         }
 
         [DisableConcurrentExecution(10)]
@@ -44,14 +48,13 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
             foreach (var store in stores)
             {
                 // store level settings
-                var startDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentStartDay.Name, 2);
-                var endDateTimeSetting = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.CartAbandonmentEndDay.Name, 1);
+                var cronTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CronTime.Name, 24);
                 var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name, false);
                 var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name, false);
                 if(isAnonymousUserAllowed || isLoginUserAllowed)
                 {
-                    var startDateTime = dateTime.AddDays(-startDateTimeSetting);
-                    var endDateTime = dateTime.AddDays(-endDateTimeSetting);
+                    var endDateTime = dateTime.AddHours(-cronTime);
+                    var startDateTime = endDateTime.AddHours(-cronTime);
                     var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
                     {
                         CreatedStartDate = endDateTime,
