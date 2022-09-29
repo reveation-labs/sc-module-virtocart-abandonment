@@ -112,7 +112,7 @@ angular.module('CartAbandonmentReminder')
                 });
             }
             var newBlade = {
-                id: 'cartAbandonmentReminder',
+                id: 'cart-details',
                 title: 'Cart Details',
                 currentEntities: cart,
                 controller: 'CartAbandonmentReminde.LineItemsController',

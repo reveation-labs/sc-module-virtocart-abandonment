@@ -49,9 +49,8 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
             {
                 // store level settings
                 var cronTime = _settingsManager.GetValue(ModuleConstants.Settings.General.CronTime.Name, 24);
-                var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name, false);
-                var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name, false);
-                if(isAnonymousUserAllowed || isLoginUserAllowed)
+                var isStoreAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.EnableCartReminder.Name, false);
+                if(isStoreAllowed)
                 {
                     var endDateTime = dateTime.AddHours(-cronTime);
                     var startDateTime = endDateTime.AddHours(-cronTime);
@@ -65,11 +64,10 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
                         Take = 1000
                     };
                     // get shopping carts based on search criteria
-                    var shoppingCarts = await _cartSearchService.SearchAsync(shoppingCartSearchCritera);
-                    var carts = shoppingCarts.Results;
-                    if(shoppingCarts.TotalCount > 0)
+                    var shoppingCarts = (await _cartSearchService.SearchAsync(shoppingCartSearchCritera)).Results.ToList();
+                    if(shoppingCarts.Count > 0)
                     {
-                        await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(carts.ToList(),store,isAnonymousUserAllowed,isLoginUserAllowed);
+                        await _sendCartReminderEmailNotification.TryToSendCartReminderAsync(shoppingCarts,store);
                     }
                 }
             }

@@ -33,7 +33,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Core
                 public static SettingDescriptor CartAbandonmentReminderEnabled { get; } = new SettingDescriptor
                 {
                     Name = "CartAbandonmentReminder.CartAbandonmentReminderEnabled",
-                    GroupName = "CartAbandonmentReminder|General",
+                    GroupName = "Cart Abandonment Reminder|General",
                     ValueType = SettingValueType.Boolean,
                     DefaultValue = false,
                 };
@@ -41,14 +41,14 @@ namespace ReveationLabs.CartAbandonmentReminder.Core
                 public static readonly SettingDescriptor CronExpression = new ()
                 {
                     Name = "CartAbandonmentReminder.CronExpression",
-                    GroupName = "CartAbandonmentReminder|General",
+                    GroupName = "Cart Abandonment Reminder|General",
                     ValueType = SettingValueType.ShortText
                 };
 
                 public static readonly SettingDescriptor CronTime = new()
                 {
                     Name = "CartAbandonmentReminder.CronTime",
-                    GroupName = "CartAbandonmentReminder|General",
+                    GroupName = "Cart Abandonment Reminder|General",
                     ValueType = SettingValueType.Integer
                 };
 
@@ -64,23 +64,34 @@ namespace ReveationLabs.CartAbandonmentReminder.Core
             }
             public static class CartAbandonmentStoreSettings
             {
+                public static readonly SettingDescriptor EnableCartReminder = new()
+                {
+                    Name = "CartAbandonmentReminder.EnableCartReminder",
+                    GroupName = "Cart Abandonment Reminder|Cart Abandonment Reminder",
+                    ValueType = SettingValueType.Boolean,
+                    DefaultValue = false
+                };
+
                 public static readonly SettingDescriptor RemindUserAnonymous = new()
                 {
                     Name = "CartAbandonmentReminder.RemindUserAnonymous",
-                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
-                    ValueType = SettingValueType.Boolean
+                    GroupName = "Cart Abandonment Reminder|Cart Abandonment Reminder",
+                    ValueType = SettingValueType.Boolean,
+                    DefaultValue = true
                 };
 
                 public static readonly SettingDescriptor RemindUserLogin = new()
                 {
                     Name = "CartAbandonmentReminder.RemindUserLogin",
-                    GroupName = "CartAbandonmentReminder|CartAbandonmentReminder",
-                    ValueType = SettingValueType.Boolean
+                    GroupName = "Cart Abandonment Reminder|Cart Abandonment Reminder",
+                    ValueType = SettingValueType.Boolean,
+                    DefaultValue = true
                 };
                 public static IEnumerable<SettingDescriptor> StoreLevelSettings
                 {
                     get
                     {
+                        yield return EnableCartReminder;
                         yield return RemindUserAnonymous;
                         yield return RemindUserLogin;
                     }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using ReveationLabs.CartAbandonmentReminder.Core;
 using ReveationLabs.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.NotificationsModule.Core.Extensions;
@@ -36,8 +37,10 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
             _userManager = userManager;
         }
         // Method to trigger email notification for all shopping carts
-        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store,bool isAnonymousUserAllowed,bool isLoginUserAllowed)
+        public async Task TryToSendCartReminderAsync(List<ShoppingCart> shoppingCarts,Store store)
         {
+            var isAnonymousUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserAnonymous.Name, true);
+            var isLoginUserAllowed = store.Settings.GetSettingValue(ModuleConstants.Settings.CartAbandonmentStoreSettings.RemindUserLogin.Name, true);
             foreach (var shoppingCart in shoppingCarts)
             {
                 var notifications = new List<EmailNotification>();

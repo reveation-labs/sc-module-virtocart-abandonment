@@ -16,8 +16,8 @@
   "settings": {
     "CartAbandonmentReminder": {
       "CartAbandonmentReminderEnabled": {
-        "title": "CartAbandonmentReminder Enabled",
-        "description": "CartAbandonmentReminder Enabled setting"
+        "title": "Cart Abandonment Reminder Enabled",
+        "description": "Cart Abandonment Reminder Enabled setting"
       },
       "CronExpression": {
         "title": "Cart Abandonment Reminder Cron",
@@ -26,6 +26,10 @@
       "CronTime": {
         "title": "Enter Cart Reminder Time",
         "description": "CartAbandonmentReminder Cron"
+      },
+      "EnableCartReminder": {
+        "title": "Enable Cart Reminder",
+        "description": "Enable Abandon Cart Reminder On Store Level"
       },
       "RemindUserAnonymous": {
         "title": "Remind User Anonymous",

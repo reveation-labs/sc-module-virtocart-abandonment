@@ -16,7 +16,7 @@ angular.module(moduleName, [])
                         'platformWebApp.bladeNavigationService',
                         function (bladeNavigationService) {
                             var newBlade = {
-                                id: 'blade1',
+                                id: 'cartAbandonmentReminder',
                                 controller: 'CartAbandonmentReminder.CartReminderController',
                                 isExpandable: true,
                                 template: 'Modules/$(ReveationLabs.CartAbandonmentReminder)/Scripts/blades/cart-reminder.html',
@@ -33,8 +33,8 @@ angular.module(moduleName, [])
             //Register module in main menu
             var menuItem = {
                 path: 'browse/CartAbandonmentReminder',
-                icon: 'fa fa-cube',
-                title: 'CartAbandonmentReminder',
+                icon: 'fa fa-shopping-cart',
+                title: 'Abandoned Carts',
                 priority: 100,
                 action: function () { $state.go('workspace.CartAbandonmentReminderState'); },
                 permission: 'CartAbandonmentReminder:access',
