@@ -23,8 +23,7 @@ angular.module('CartAbandonmentReminder')
                    { name: 'storeId', displayName: 'orders.blades.customerOrder-list.labels.store', width: '**' },
                    { name: 'total', displayName: 'orders.blades.customerOrder-list.labels.total', width: '*' },
                    { name: 'currency', displayName: 'orders.blades.customerOrder-list.labels.currency', width: '*' },
-                   { name: 'createdDate', displayName: 'orders.blades.customerOrder-list.labels.created', width: '**'},
-                   { name: 'modifiedDate', displayName: 'orders.blades.customerOrder-list.labels.modified', width: '**', sort: { direction: uiGridConstants.DESC } }
+                   { name: 'createdDate', displayName: 'orders.blades.customerOrder-list.labels.created', width: '**', sort: { direction: uiGridConstants.DESC } }
        ]}
     }
 
