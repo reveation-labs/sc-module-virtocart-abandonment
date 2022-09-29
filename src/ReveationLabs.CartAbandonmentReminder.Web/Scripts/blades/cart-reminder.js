@@ -22,6 +22,7 @@ angular.module('CartAbandonmentReminder')
                    { name: 'customerName', displayName: 'orders.blades.customerOrder-list.labels.customer', width: '***' },
                    { name: 'storeId', displayName: 'orders.blades.customerOrder-list.labels.store', width: '**' },
                    { name: 'currency', displayName: 'orders.blades.customerOrder-list.labels.currency', width: '*' },
+                   { name: 'total', displayName: 'orders.blades.customerOrder-list.labels.total', width: '*' },
                    { name: 'createdDate', displayName: 'orders.blades.customerOrder-list.labels.created', width: '**', sort: { direction: uiGridConstants.DESC } }
        ]}
     }
@@ -40,13 +41,7 @@ angular.module('CartAbandonmentReminder')
                         $scope.objects = response.data.results;
                     });
                 }
-            }
-            else if (blade.preloadedOrders) {
-                $scope.pageSettings.totalItems = blade.preloadedOrders.length;
-                $scope.objects = blade.preloadedOrders;
-    
-                blade.isLoading = false;
-            } else {
+            }else {
                 blade.isLoading = true;
                 var criteria = {
                     sort: uiGridHelper.getSortExpression($scope),
@@ -79,26 +74,13 @@ angular.module('CartAbandonmentReminder')
 
         $scope.setGridOptions = function (gridId, gridOptions) {
             // add currency filter for properties that need it
-            Array.prototype.push.apply(gridOptions.columnDefs, _.map([
-                "discountAmount", "subTotal", "subTotalWithTax", "subTotalDiscount", "subTotalDiscountWithTax", "subTotalTaxTotal",
-                "shippingTotal", "shippingTotalWithTax", "shippingSubTotal", "shippingSubTotalWithTax", "shippingDiscountTotal", "shippingDiscountTotalWithTax", "shippingTaxTotal",
-                "paymentTotal", "paymentTotalWithTax", "paymentSubTotal", "paymentSubTotalWithTax", "paymentDiscountTotal", "paymentDiscountTotalWithTax", "paymentTaxTotal",
-                "discountTotal", "discountTotalWithTax", "fee", "feeWithTax", "feeTotal", "feeTotalWithTax", "taxTotal", "sum"
-            ], function(name) {
-                return { name: name, cellFilter: "currency | showPrice: true", visible: true };
-            }));
 
             $scope.gridOptions = gridOptions;
             gridOptionExtension.tryExtendGridOptions(gridId, gridOptions);
     
             uiGridHelper.initialize($scope, gridOptions, function (gridApi) {
-                if (blade.preloadedOrders) {
-                    $scope.gridOptions.enableSorting = true;
-                    $scope.gridOptions.useExternalSorting = false;              
-                }
-                else {
+
                     uiGridHelper.bindRefreshOnSortChanged($scope);
-                }
             });
     
             bladeUtils.initializePagination($scope);
