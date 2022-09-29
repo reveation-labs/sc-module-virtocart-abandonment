@@ -30,12 +30,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Web.Controllers.Api
         public async Task<ActionResult<ShoppingCartSearchResult>> GetCart([FromBody] ShoppingCartSearchCriteria shoppingCartSearchCriteria)
         {
             var response = CartResponseGroup.Full;
-            var dateTime = DateTime.Now;
-            var startDateTime = dateTime.AddDays(-3000);
-            var endDateTime = dateTime.AddDays(0);
             shoppingCartSearchCriteria.ResponseGroup = response.ToString();
-            shoppingCartSearchCriteria.CreatedStartDate = startDateTime;
-            shoppingCartSearchCriteria.CreatedEndDate = endDateTime;
             var shoppingCarts = await _cartSearchService.SearchCartAsync(shoppingCartSearchCriteria);
 
             return shoppingCarts;
