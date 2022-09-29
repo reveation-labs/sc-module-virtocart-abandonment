@@ -18,6 +18,7 @@ angular.module(moduleName, [])
                             var newBlade = {
                                 id: 'blade1',
                                 controller: 'CartAbandonmentReminder.CartReminderController',
+                                isExpandable: true,
                                 template: 'Modules/$(ReveationLabs.CartAbandonmentReminder)/Scripts/blades/cart-reminder.html',
                                 isClosingDisabled: true,
                             };

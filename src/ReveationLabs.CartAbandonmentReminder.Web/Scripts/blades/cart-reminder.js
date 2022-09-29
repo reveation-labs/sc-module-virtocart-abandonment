@@ -5,9 +5,7 @@ angular.module('CartAbandonmentReminder')
         var blade = $scope.blade;
         blade.carts = null;
         $scope.carts = null;
-        blade.title = 'CartAbandonmentReminder';
-        var showAllCarts = true;
-        var blade = $scope.blade;
+        blade.title = 'Cart Abandonment Reminder';
         var bladeNavigationService = bladeUtils.bladeNavigationService;
         $scope.uiGridConstants = uiGridConstants;
         $scope.pageSettings = {};
@@ -51,6 +49,7 @@ angular.module('CartAbandonmentReminder')
             } else {
                 blade.isLoading = true;
                 var criteria = {
+                    sort: uiGridHelper.getSortExpression($scope),
                     skip: ($scope.pageSettings.currentPage - 1) * $scope.pageSettings.itemsPerPageCount,
                     take: $scope.pageSettings.itemsPerPageCount
                 };
@@ -58,6 +57,7 @@ angular.module('CartAbandonmentReminder')
                 if (blade.searchCriteria) {
                     angular.extend(criteria, blade.searchCriteria);
                 }
+                
                 cartAbandonmentReminderService.search(criteria).then(function (response) {
                     blade.isLoading = false;
                     $scope.carts = response.data.results;
@@ -67,39 +67,16 @@ angular.module('CartAbandonmentReminder')
             }
 
         };
-        // $scope.blade.toolbarCommands = [
-        //     {
-        //         name: "Show All Cart",
-        //         icon: 'switch',
-        //         class: 'switch',
-        //         type: 'checkbox',
-        //         executeMethod: function () {
-        //             if(showAllCarts){
-        //                 showAllCarts = false
-        //             }else{
-        //                 showAllCarts = true
-        //             }
-        //             blade.refresh();
-        //         },
-        //         canExecuteMethod: function () {
-        //             return true;
-        //         },
-        //     }
-        // ];
-        $scope.selectNode = function (node) {
-            $scope.selectedNodeId = node.id;
-    
-            var foundTemplate = knownOperations.getOperation(node.operationType);
-            if (foundTemplate) {
-                var newBlade = angular.copy(foundTemplate.detailBlade);
-                if (blade.preloadedOrders || angular.isFunction(blade.refreshCallback)) {
-                    newBlade.id = 'preloadedOrderDetails';
+        $scope.blade.toolbarCommands = [
+            {
+                name: "platform.commands.refresh", icon: 'fa fa-refresh',
+                executeMethod: blade.refresh,
+                canExecuteMethod: function () {
+                    return true;
                 }
-                newBlade.customerOrder = node;
-                bladeNavigationService.showBlade(newBlade, blade);
             }
-        };
-    
+        ];
+
         $scope.setGridOptions = function (gridId, gridOptions) {
             // add currency filter for properties that need it
             Array.prototype.push.apply(gridOptions.columnDefs, _.map([
@@ -110,7 +87,7 @@ angular.module('CartAbandonmentReminder')
             ], function(name) {
                 return { name: name, cellFilter: "currency | showPrice: true", visible: true };
             }));
-    
+
             $scope.gridOptions = gridOptions;
             gridOptionExtension.tryExtendGridOptions(gridId, gridOptions);
     
@@ -144,5 +121,5 @@ angular.module('CartAbandonmentReminder')
             bladeNavigationService.showBlade(newBlade, $scope.blade);
         };
 
-        blade.refresh();
+        // blade.refresh();
     }]);

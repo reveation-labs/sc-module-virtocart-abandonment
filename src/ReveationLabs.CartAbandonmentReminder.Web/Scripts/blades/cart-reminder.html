@@ -1,132 +1,36 @@
 ﻿<div class="blade-content __large-wide" style="width: 100%">
-    <!-- <div class="blade-inner">
-            <table class="table" id="carts" style="margin-bottom: 90px">
-                <thead>
-                    <tr>
-                        <th class="table-col __proudct-img align-center">
-                            Customer Name
-                        </th>
-                        <th class="table-col align-center">
-                            IsAnonymous 
-                        </th>
-                        <th class="table-col align-center">
-                            Store
-                        </th>
-                        <th class="table-col align-center">
-                            Email 
-                        </th>
-                        <th class="table-col align-center">
-                            Contact No. 
-                        </th>
-                        <th class="table-col align-center">
-                            Created
-                        </th>
-                        <th class="table-col align-center">
-                            Modified
-                        </th>
-                        <th class="table-col align-center">
-                            Total
-                        </th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="cart in carts" ng-click="openCartBlade(cart)">
-                    <tr class="table-item" ng-class="{'__selected': $index === blade.selectedNodeId}"
-                        ng-click="blade.selectedNodeId = $index">
-                        <td class="table-col align-center">
-                            <span ng-bind="cart.customerName"></span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span ng-bind="cart.isAnonymous"></span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span ng-bind="cart.storeId"></span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span class="list-price" ng-repeat="shipment in cart.shipments">
-                                <span ng-bind="shipment.deliveryAddress.email"></span>
-                            </span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span class="list-price" ng-repeat="shipment in cart.shipments">
-                                <span ng-bind="shipment.deliveryAddress.phone"></span>
-                            </span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span class="list-price">
-                                {{ cart.createdDate | date:'MM-dd-yyyy hh:mm:ss a' }}
-                            </span>
-                        </td>
-                        <td class="table-col align-center">
-                            <span class="list-price">
-                                {{ cart.modifiedDate | date:'MM-dd-yyyy hh:mm:ss a' }}
-                            </span>
-                        </td>
-                        <td class="table-col __total align-center">
-                            <span class="list-price" ng-bind="cart.total">
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-<div class="blade-static __bottom" ng-if="pageSettings.itemsPerPageCount < pageSettings.totalItems" ng-include="'pagerTemplate.html'" ng-click="blade.refresh()"></div>
-<div class="blade-content" ng-class="{'__large-wide': blade.isExpanded, '__normal': !blade.isExpanded}">
-    <div class="blade-inner">
-        <div class="inner-block">
-            <div class="table-wrapper" ng-init="setGridOptions('customerOrder-list-grid', getGridOptions())">
-                <div ui-grid="gridOptions" ui-grid-auto-resize ui-grid-save-state ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-height></div>
-                <ul class="menu __context" role="menu" id="cor_menu">
-                    <li class="menu-item" ng-click='openCartBlade(contextMenuEntity)'>
-                        <i class="menu-ico fa fa-edit"></i> {{'platform.commands.manage' | translate}}
-                    </li>
-                    <li class="menu-item" ng-if='!blade.hideDelete' ng-click='deleteList([contextMenuEntity])' va-permission="order:delete">
-                        <i class="menu-ico fas fa-trash-alt"></i> {{'platform.commands.delete' | translate}}
-                    </li>
-                </ul>
+    <div class="blade-static __bottom" ng-if="pageSettings.itemsPerPageCount < pageSettings.totalItems"
+        ng-include="'pagerTemplate.html'" ng-click="blade.refresh()">
+    </div>
+    <div class="blade-content" ng-class="{'__large-wide': blade.isExpanded, '__normal': !blade.isExpanded}">
+        <div class="blade-inner">
+            <div class="inner-block">
+                <div class="table-wrapper" ng-init="setGridOptions('customerOrder-list-grid', getGridOptions())">
+                    <div ui-grid="gridOptions" ui-grid-auto-resize ui-grid-save-state ui-grid-selection
+                        ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-height>
+                    </div>
+                    <ul class="menu __context" role="menu" id="cor_menu">
+                        <li class="menu-item" ng-click='openCartBlade(contextMenuEntity)'>
+                            <i class="menu-ico fa fa-edit"></i> {{'platform.commands.manage' | translate}}
+                        </li>
+                        <li class="menu-item" ng-if='!blade.hideDelete' ng-click='deleteList([contextMenuEntity])'
+                            va-permission="order:delete">
+                            <i class="menu-ico fas fa-trash-alt"></i> {{'platform.commands.delete' | translate}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script type="text/ng-template" id="order-list.row.html">
-    <div ng-click='grid.appScope.openCartBlade(row.entity)' ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" ui-grid-one-bind-id-grid="rowRenderIndex + '-' + col.uid + '-cell'" class="ui-grid-cell" ng-class="{'ui-grid-row-header-cell': col.isRowHeader, '__hovered': grid.appScope.contextMenuEntity === row.entity, '__selected': row.entity.id===grid.appScope.selectedNodeId}" role="{{col.isRowHeader ? 'rowheader' : 'gridcell' }}" ui-grid-cell context-menu="grid.appScope.contextMenuEntity = row.entity" data-target="cor_menu"></div>
-</script>
-<script type="text/ng-template" id="list-actions.cell.html">
-    <div class="ui-grid-actions" left-click-menu="grid.appScope.contextMenuEntity = row.entity">
-        <i class="fa context-menu"></i>
+    <script type="text/ng-template" id="order-list.row.html">
+    <div ng-click='grid.appScope.openCartBlade(row.entity)' 
+    ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" 
+    ui-grid-one-bind-id-grid="rowRenderIndex + '-' + col.uid + '-cell'" 
+    class="ui-grid-cell" 
+    ng-class="{'ui-grid-row-header-cell': col.isRowHeader, '__hovered': grid.appScope.contextMenuEntity === row.entity, '__selected': row.entity.id===grid.appScope.selectedNodeId}" 
+    role="{{col.isRowHeader ? 'rowheader' : 'gridcell' }}" 
+    ui-grid-cell context-menu="grid.appScope.contextMenuEntity = row.entity" 
+    data-target="cor_menu">
     </div>
 </script>
-
-    <style>
-        .menu-ico {
-            display: block;
-            font-size: 18px;
-            margin: 0 0 3px;
-        }
-
-        .align-center {
-            text-align: center !important;
-        }
-
-        .download-btn {
-            background: #fbfdfe;
-            border: 0px;
-        }
-
-        .download-btn-space {
-            display: inline-block;
-            padding-left: 20px;
-        }
-
-        .order-box {
-            background: #fbfdfe;
-            box-sizing: border-box;
-            box-shadow: 0 0 0 2px #dee9f0 inset;
-            padding: 2px;
-            margin: 15px;
-        }
-
-        .vertical--center {
-            vertical-align: sub;
-        }
-    </style>
