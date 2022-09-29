@@ -21,9 +21,10 @@ angular.module('CartAbandonmentReminder')
         columnDefs: [
                    { name: 'customerName', displayName: 'orders.blades.customerOrder-list.labels.customer', width: '***' },
                    { name: 'storeId', displayName: 'orders.blades.customerOrder-list.labels.store', width: '**' },
-                   { name: 'currency', displayName: 'orders.blades.customerOrder-list.labels.currency', width: '*' },
                    { name: 'total', displayName: 'orders.blades.customerOrder-list.labels.total', width: '*' },
-                   { name: 'createdDate', displayName: 'orders.blades.customerOrder-list.labels.created', width: '**', sort: { direction: uiGridConstants.DESC } }
+                   { name: 'currency', displayName: 'orders.blades.customerOrder-list.labels.currency', width: '*' },
+                   { name: 'createdDate', displayName: 'orders.blades.customerOrder-list.labels.created', width: '**'},
+                   { name: 'modifiedDate', displayName: 'orders.blades.customerOrder-list.labels.modified', width: '**', sort: { direction: uiGridConstants.DESC } }
        ]}
     }
 
