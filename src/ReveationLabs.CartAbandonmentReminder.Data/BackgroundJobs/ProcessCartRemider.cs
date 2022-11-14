@@ -42,7 +42,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
         public async Task Process()
         {
             var response = CartResponseGroup.Full;
-            var dateTime = DateTime.Now;
+            var dateTime = DateTime.UtcNow;
             var storeSearch = await _storeSearchService.SearchAsync(new StoreSearchCriteria { Skip = 0,Take = 1000 });
             var stores = storeSearch.Results.ToList();
             foreach (var store in stores)
