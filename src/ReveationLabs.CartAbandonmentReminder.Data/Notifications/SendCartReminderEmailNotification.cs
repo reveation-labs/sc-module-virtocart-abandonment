@@ -48,7 +48,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.Notifications
                 if (notification != null)
                 {
                     //if user is anonymous and we have email id available then it will use this to trigegr email
-                    if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress is not null && isAnonymousUserAllowed)
+                    if (shoppingCart.Shipments.Count > 0 && shoppingCart.Shipments.First().DeliveryAddress is not null && shoppingCart.Shipments.First().DeliveryAddress.Email is not null && isAnonymousUserAllowed)
                     {
                         var anonymousUserEmail = shoppingCart.Shipments.First().DeliveryAddress.Email;
                         notification.LanguageCode = shoppingCart.LanguageCode;
