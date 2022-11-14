@@ -17,6 +17,9 @@ using VirtoCommerce.CartModule.Core.Model.Search;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Data.Services;
 using VirtoCommerce.Platform.Core.GenericCrud;
+using ReveationLabs.CartAbandonmentReminder.Data.Handlers;
+using VirtoCommerce.Platform.Core.Bus;
+using VirtoCommerce.Platform.Core.Settings.Events;
 
 namespace ReveationLabs.CartAbandonmentReminder.Web
 {
@@ -39,6 +42,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Web
 
             // Register services
             //serviceCollection.AddTransient<IMyService, MyService>();
+            serviceCollection.AddTransient<ObjectSettingEntryChangedEventHandler>();
             serviceCollection.AddTransient<BackgroundCartReminder>();
             serviceCollection.AddTransient<IExtendShoppingCartSearchService, ExtendShoppingCartSearchService>();
             serviceCollection.AddTransient<ISendCartReminderEmailNotification,SendCartReminderEmailNotification>();
@@ -65,6 +69,9 @@ namespace ReveationLabs.CartAbandonmentReminder.Web
             //Schedule periodic subscription processing job
             var jobsRunner = appBuilder.ApplicationServices.GetService<BackgroundCartReminder>();
             jobsRunner.ConfigureProcessCartReminderJob().GetAwaiter().GetResult();
+
+            var inProcessBus = appBuilder.ApplicationServices.GetService<IHandlerRegistrar>();
+            inProcessBus.RegisterHandler<ObjectSettingChangedEvent>(async (message, token) => await appBuilder.ApplicationServices.GetService<ObjectSettingEntryChangedEventHandler>().Handle(message));
 
             // Apply migrations
             using var serviceScope = serviceProvider.CreateScope();
