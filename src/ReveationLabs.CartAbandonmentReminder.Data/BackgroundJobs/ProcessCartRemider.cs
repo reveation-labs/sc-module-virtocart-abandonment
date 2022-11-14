@@ -56,7 +56,7 @@ namespace ReveationLabs.CartAbandonmentReminder.Data.BackgroundJobs
                     var startDateTime = endDateTime.AddHours(-cronTime);
                     var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
                     {
-                        CreatedStartDate = startDateTime,
+                        ModifiedStartDate = startDateTime,
                         ModifiedEndDate = endDateTime,
                         Skip = 0,
                         ResponseGroup = response.ToString(),
