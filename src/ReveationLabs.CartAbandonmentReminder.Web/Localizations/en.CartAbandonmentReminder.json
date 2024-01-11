@@ -1,0 +1,50 @@
+{
+  "CartAbandonmentReminder": {
+    "blades": {
+      "hello-world": {
+        "title": "Hello world blade"
+      }
+    }
+  },
+  "permissions": {
+    "CartAbandonmentReminder:access": "Open CartAbandonmentReminder menu",
+    "CartAbandonmentReminder:create": "Create CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:read": "View CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:update": "Update CartAbandonmentReminder related data",
+    "CartAbandonmentReminder:delete": "Delete CartAbandonmentReminder related data"
+  },
+  "settings": {
+    "CartAbandonmentReminder": {
+      "CartAbandonmentReminderEnabled": {
+        "title": "Cart Abandonment Reminder Enabled",
+        "description": "Cart Abandonment Reminder Enabled setting"
+      },
+      "CronExpression": {
+        "title": "Cart Abandonment Reminder Cron",
+        "description": "CartAbandonmentReminder Cron"
+      },
+      "CronTime": {
+        "title": "Enter Cart Reminder Time",
+        "description": "CartAbandonmentReminder Cron"
+      },
+      "EnableCartReminder": {
+        "title": "Enable Cart Reminder",
+        "description": "Enable Abandon Cart Reminder On Store Level"
+      },
+      "RemindUserAnonymous": {
+        "title": "Remind User Anonymous",
+        "description": "Enable This If you want to send notification to Anonymous user"
+      },
+      "RemindUserLogin": {
+        "title": "Remind Logins User",
+        "description": "Enable This If you want to send notification to login user"
+      }
+    }
+  },
+  "notificationTypes": {
+    "CartReminderEmailNotification": {
+      "displayName": "Cart Reminder Email Notification",
+      "description": "This notification sends email to customer to remind their abandon carts"
+    }
+  }
+}
