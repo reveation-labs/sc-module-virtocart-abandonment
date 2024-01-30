@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
-      uses: actions/setup-dotnet@v7
+      uses: actions/setup-dotnet@v8
       with:
         dotnet-version: 8.0.x
             
