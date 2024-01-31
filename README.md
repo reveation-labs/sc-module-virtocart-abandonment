@@ -4,6 +4,19 @@
 
 In E-Commerce, Cart abandonment is an important concern. There are reasons for cart to be abandoned in online shopping and businesses should address this before loosing customers. There are ongoing challenges that require strategic improvemnet to reduce cart abandonment. So here, we are providing a strategy to reduce cart abandonment by sending an email notification to the concerned customer who forgot to proceed with items present in the cart. Leverage this finest feature to improve sales and attract buyers.
 
+In Virto Platform, this module is present as Abandoned Carts in more option.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/825a963f-1f9b-4330-b78d-547df536be65)
+
+In main blade it will show customer and store details for which carts have been added.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/b8ab3283-4e8a-427a-be93-a6a5514ca5b9)
+
+On selecting any customer, it will list out all the available items in the cart with details.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/9fd0cf35-5bb8-4e94-9815-a688e8dde8dc)
+
+
 ## Setup
 This new feature require a seamless one time setup in Virto Platform settings. Best part is being configurable and can be enable disable anytime as per need.
 
