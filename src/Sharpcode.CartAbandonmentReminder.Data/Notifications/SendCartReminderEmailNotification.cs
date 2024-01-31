@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Sharpcode.CartAbandonmentReminder.Core;
 using Sharpcode.CartAbandonmentReminder.Core.Services;
 using VirtoCommerce.CartModule.Core.Model;

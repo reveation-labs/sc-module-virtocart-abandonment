@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using Hangfire;
 using VirtoCommerce.Platform.Core.Settings;
 using Sharpcode.CartAbandonmentReminder.Core;
-using Sharpcode.CartAbandonmentReminder.Data.BackgroundJobs;
-using Microsoft.Extensions.Configuration;
 
 namespace Sharpcode.CartAbandonmentReminder.Data.BackgroundJobs
 {
