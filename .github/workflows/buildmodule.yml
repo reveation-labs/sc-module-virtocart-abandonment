@@ -22,12 +22,43 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+
+    - name: Install VC Build
+        run: |
+          dotnet tool install -g VirtoCommerce.GlobalTool
+
+      - name: VC Build Compress
+        run: |
+          vc-build compress --skip = test
             
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore
-      
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Get Artifact Version
+        uses: VirtoCommerce/vc-github-actions/get-image-version@master
+        id: artifact_ver
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: ${{ steps.artifact_ver.outputs.prefix }}
+          release_name: ${{ steps.artifact_ver.outputs.prefix }}
+          draft: false
+          prerelease: false
+          body: |
+            ## :dart: Development
+            ### Added Features:           
+            - Product Description Generation: Generate SEO-friendly product descriptions effortlessly.
+            - Translation Capabilities: Translate product details across multiple languages.
+            - Rephrasing Features: Refine and ensure unique product content.
+            - Image Generation: AI-powered creation of high-quality product images.
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./artifacts/Sharpcode.CartAbandonmentReminder_${{ steps.artifact_ver.outputs.prefix }}.zip
+          asset_name: Sharpcode.CartAbandonmentReminder_${{ steps.artifact_ver.outputs.prefix }}.zip
+          asset_content_type: application/zip
