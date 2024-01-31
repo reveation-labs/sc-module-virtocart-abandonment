@@ -2,57 +2,44 @@
 
 ## Overview
 
-Short overview of what the new module is.
+In E-Commerce, Cart abandonment is an important concern. There are reasons for cart to be abandoned in online shopping and businesses should address this before loosing customers. There are ongoing challenges that require strategic improvemnet to reduce cart abandonment. So here, we are providing a strategy to reduce cart abandonment by sending an email notification to the concerned customer who forgot to proceed with items present in the cart. Leverage this finest feature to improve sales and attract buyers.
 
-- What is the new or updated experience?
+## Setup
+This new feature require a seamless one time setup in Virto Platform settings. Best part is being configurable and can be enable disable anytime as per need.
 
-- Does this module replace an existing module/experience? If yes, what is the transition plan?
+### Enabling Cart Reminder feature
+Search for Cart Abandonment Reminder and enable options as required. In case to stop reminding through email notification, just disable 'Enable Cart Reminder' from below settings.
 
-- Does this module has dependency on other ? If yes, list/explain the dependencies.
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/3453fae0-0285-4b57-99e1-7c933c9108e0)
 
-- List the key deployment scenarios - why would people use this module?
+### Cart Reminder General Settings
+Below is the general settings of cart reminder, provide cron time and cron expression which will run the service in the background as per scheduled timing and send notifications to the configured email addresses.
 
-## Functional Requirements
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/bfa008f7-8a29-474e-afac-c6077266db0a)
 
-Short description of the new module functional requirements.
+### Email Notification Setup
+Navigate to Notifications module and select Cart Reminder Email Notification.
 
-## Scenarios
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/44c018d7-7302-40f7-8126-ef823a510249)
 
-List of scenarios that the new module implements
+Enable Active option.
+Provide CC and BCC addresses if required.
+Add Template for Subject and Body of email notifications.
 
-1. [Scenario 1](/doc/scenario-name1.md)
-1. [Scenario 2](/doc/scenario-name2.md)
-1. [Scenario 3](/doc/scenario-name3.md)
-    1. [Scenario 3.1](/doc/scenario-name31.md)
-    1. [Scenario 3.2](/doc/scenario-name32.md)
-1. [Scenario 4](/doc/scenario-name4.md)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/68682f74-bb14-4ef2-943c-111985681eab)
 
-## Web API
+### Verify Email Notification
 
-Web API documentation for each module is built out automatically and can be accessed by following the link bellow:
-<https://link-to-swager-api>
+After setting up cart reminder module, user can verify email notifications in Notification Activity Feed for status of each generated notifications.
+For Error status, check what is in the error section and resolve it accordingly.
 
-## Database Model
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/d96877a3-fbb9-4ba9-931b-801d4170634a)
 
-![DB model](./docs/media/diagram-db-model.png)
-
-## Related topics
-
-[Some Article1](some-article1.md)
-
-[Some Article2](some-article2.md)
 
 ## License
 
-Copyright (c) Virto Solutions LTD.  All rights reserved.
+Copyright (c) Sharpcode Solutions. All rights reserved.
 
-Licensed under the Virto Commerce Open Software License (the "License"); you
-may not use this file except in compliance with the License. You may
-obtain a copy of the License at
+Licensed under the GNU Affero General Public License v3.0. You may not use this file except in compliance with the License.
 
-<http://virtocommerce.com/opensourcelicense>
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
