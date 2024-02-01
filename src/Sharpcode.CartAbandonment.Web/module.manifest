@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <id>Sharpcode.CartAbandonment</id>
+    <version>3.800.0</version>
+    <version-tag></version-tag>
+
+    <platformVersion>3.800.0</platformVersion>
+    <dependencies>
+        <!--<dependency id="VirtoCommerce.Core" version="3.800.0" />-->
+    </dependencies>
+
+    <title>CartAbandonment module</title>
+    <description>CartAbandonment module</description>
+
+    <authors>
+        <author>Reveation Labs</author>
+    </authors>
+    <owners>
+        <owner>ReveationLabs</owner>
+    </owners>
+
+    <projectUrl>https://github.com/reveation-labs/virto-cart-abandonment-module</projectUrl>
+    <iconUrl>Modules/$(Sharpcode.CartAbandonment)/Content/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <assemblyFile>Sharpcode.CartAbandonment.Web.dll</assemblyFile>
+    <moduleType>Sharpcode.CartAbandonment.Web.Module, Sharpcode.CartAbandonment.Web</moduleType>
+
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright © 2022 ReveationLabs. All rights reserved</copyright>
+    <tags>extension module</tags>
+    <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
+</module>

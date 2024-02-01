@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+      <!-- Project is not a test project -->
+      <SonarQubeTestProject>false</SonarQubeTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sharpcode.CartAbandonment.Core\Sharpcode.CartAbandonment.Core.csproj" />
+    <ProjectReference Include="..\Sharpcode.CartAbandonment.Data\Sharpcode.CartAbandonment.Data.csproj" />
+  </ItemGroup>
+
+</Project>

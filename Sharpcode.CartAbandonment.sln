@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3638CB4-C495-49A4-BF8B-5B9B70FADE90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AE26D6E6-9053-426A-BA14-88E322DD8D32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED0F6418-366D-4898-A6DD-81EE9C8283F1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		module.ignore = module.ignore
+		README.md = README.md
+		VirtoCommerce.CartAbandonmentReminder.sln.DotSettings = VirtoCommerce.CartAbandonmentReminder.sln.DotSettings
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharpcode.CartAbandonment.Core", "src\Sharpcode.CartAbandonment.Core\Sharpcode.CartAbandonment.Core.csproj", "{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharpcode.CartAbandonment.Data", "src\Sharpcode.CartAbandonment.Data\Sharpcode.CartAbandonment.Data.csproj", "{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharpcode.CartAbandonment.Web", "src\Sharpcode.CartAbandonment.Web\Sharpcode.CartAbandonment.Web.csproj", "{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharpcode.CartAbandonment.Tests", "tests\Sharpcode.CartAbandonment.Tests\Sharpcode.CartAbandonment.Tests.csproj", "{7667660D-D102-4C5D-B337-3B796B365D4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7667660D-D102-4C5D-B337-3B796B365D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7667660D-D102-4C5D-B337-3B796B365D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7667660D-D102-4C5D-B337-3B796B365D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7667660D-D102-4C5D-B337-3B796B365D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9E1ACDC5-2028-4A0A-8330-337FFCD0F7ED} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{E10EF9EA-8FBC-4147-902F-CB0C495DB0B9} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{BB38AAEA-2A80-407B-9D4F-B2BFC61E515E} = {F3638CB4-C495-49A4-BF8B-5B9B70FADE90}
+		{7667660D-D102-4C5D-B337-3B796B365D4D} = {AE26D6E6-9053-426A-BA14-88E322DD8D32}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91DB72C1-9A08-4692-8E82-3C8F65C6B8DD}
+	EndGlobalSection
+EndGlobal
