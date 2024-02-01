@@ -4,18 +4,10 @@
 
 In E-Commerce, Cart abandonment is an important concern. There are reasons for cart to be abandoned in online shopping and businesses should address this before loosing customers. There are ongoing challenges that require strategic improvemnet to reduce cart abandonment. So here, we are providing a strategy to reduce cart abandonment by sending an email notification to the concerned customer who forgot to proceed with items present in the cart. Leverage this finest feature to improve sales and attract buyers.
 
-In Virto Platform, this module is present as Abandoned Carts in more option.
-
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/825a963f-1f9b-4330-b78d-547df536be65)
-
-In main blade it will show customer and store details for which carts have been added.
-
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/b8ab3283-4e8a-427a-be93-a6a5514ca5b9)
-
-On selecting any customer, it will list out all the available items in the cart with details.
-
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/9fd0cf35-5bb8-4e94-9815-a688e8dde8dc)
-
+## Table of Contents
+1. [Setup](#setup)
+2. [User Guide](#user-guide)
+3. [License](#license)
 
 ## Setup
 This new feature require a seamless one time setup in Virto Platform settings. Best part is being configurable and can be enable disable anytime as per need.
@@ -23,12 +15,14 @@ This new feature require a seamless one time setup in Virto Platform settings. B
 ### Enabling Cart Reminder feature
 Search for Cart Abandonment Reminder and enable options as required. In case to stop reminding through email notification, just disable 'Enable Cart Reminder' from below settings.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/3453fae0-0285-4b57-99e1-7c933c9108e0)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/890f6f25-f48a-4fac-b77c-e6f798a519f9)
+
 
 ### Cart Reminder General Settings
 Below is the general settings of cart reminder, provide cron time and cron expression which will run the service in the background as per scheduled timing and send notifications to the configured email addresses.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/bfa008f7-8a29-474e-afac-c6077266db0a)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/ff167a75-ffeb-4eab-a3cb-25751b12dc3e)
+
 
 ### Email Notification Setup
 Navigate to Notifications module and select Cart Reminder Email Notification.
@@ -47,6 +41,22 @@ After setting up cart reminder module, user can verify email notifications in No
 For Error status, check what is in the error section and resolve it accordingly.
 
 ![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/d96877a3-fbb9-4ba9-931b-801d4170634a)
+
+## User Guide
+
+To leverage this module, choose Carts in Virto Platform's more option.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/52782a7d-7d27-4aee-b835-c3ebd0e9aa3c)
+
+
+In main blade it will show customer and store details for which carts have been added.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/307764b9-dc1c-4768-8a5d-08fb52f97d84)
+
+
+On selecting any customer, it will list out all the available items in the cart with details.
+
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/512fd7c6-665e-4c01-be2e-d13c6ff93bb4)
 
 
 ## License
