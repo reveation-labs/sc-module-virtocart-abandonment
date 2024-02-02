@@ -24,7 +24,7 @@ namespace Sharpcode.CartAbandonment.Web.Controllers.Api
         /// <remarks>Return ShoppingCartSearchResult</remarks>
         [HttpPost]
         [Route("search")]
-        //[Authorize(ModuleConstants.Security.Permissions.Access)]
+        [Authorize(ModuleConstants.Security.Permissions.Access)]
         public async Task<ActionResult<ShoppingCartSearchResult>> GetCart([FromBody] ShoppingCartSearchCriteria shoppingCartSearchCriteria)
         {
             var response = CartResponseGroup.Full;
