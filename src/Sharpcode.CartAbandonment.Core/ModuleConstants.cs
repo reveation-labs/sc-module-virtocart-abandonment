@@ -45,9 +45,9 @@ namespace Sharpcode.CartAbandonment.Core
                     ValueType = SettingValueType.ShortText
                 };
 
-                public static readonly SettingDescriptor CronTime = new()
+                public static readonly SettingDescriptor CartTime = new()
                 {
-                    Name = "CartAbandonment.CronTime",
+                    Name = "CartAbandonment.CartTime",
                     GroupName = "Cart Abandonment Reminder|General",
                     ValueType = SettingValueType.Integer
                 };
@@ -58,7 +58,7 @@ namespace Sharpcode.CartAbandonment.Core
                     {
                         yield return CartAbandonmentEnabled;
                         yield return CronExpression;
-                        yield return CronTime;
+                        yield return CartTime;
                     }
                 }
             }

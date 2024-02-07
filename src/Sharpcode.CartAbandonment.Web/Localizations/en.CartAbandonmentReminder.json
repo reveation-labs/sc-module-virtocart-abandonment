@@ -16,35 +16,35 @@
   "settings": {
     "CartAbandonment": {
       "CartAbandonmentEnabled": {
-        "title": "Cart Abandonment Enabled",
-        "description": "Cart Abandonment Enabled setting"
+        "title": "Enable Cart Abandonment",
+        "description": "Enable this to leverage cart abandonment reminder feature"
       },
       "CronExpression": {
-        "title": "Cart Abandonment Cron",
-        "description": "CartAbandonment Cron"
+        "title": "Cart Abandonment Cron Schedule",
+        "description": "Set a cron expression for job schedule"
       },
-      "CronTime": {
-        "title": "Enter Cart Time",
+      "CartTime": {
+        "title": "Enter Cart Search Time in hours",
         "description": "CartAbandonment Cron"
       },
       "EnableCartReminder": {
         "title": "Enable Cart Reminder",
-        "description": "Enable Abandon Cart Reminder On Store Level"
+        "description": "Enable this to get email notifications for abandoned carts"
       },
       "RemindUserAnonymous": {
-        "title": "Remind User Anonymous",
-        "description": "Enable This If you want to send notification to Anonymous user"
+        "title": "Remind Anonymous Customers",
+        "description": "Enabling this will send notifications to anonymous customers"
       },
       "RemindUserLogin": {
-        "title": "Remind Logins User",
-        "description": "Enable This If you want to send notification to login user"
+        "title": "Remind Logged in Customers",
+        "description": "Enabling this will send notification to logged in customers"
       }
     }
   },
   "notificationTypes": {
-    "CartReminderEmailNotification": {
-      "displayName": "Cart Reminder Email Notification",
-      "description": "This notification sends email to customer to remind their abandon carts"
+    "CartAbandonmentEmailNotification": {
+      "displayName": "Cart Abandonment Reminder Email",
+      "description": "Customers will get an email notification for abandoned carts"
     }
   }
 }

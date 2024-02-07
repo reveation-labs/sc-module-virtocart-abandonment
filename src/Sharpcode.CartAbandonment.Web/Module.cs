@@ -16,6 +16,8 @@ using Sharpcode.CartAbandonment.Data.Repositories;
 using Sharpcode.CartAbandonment.Data.Notifications;
 using Hangfire;
 using Sharpcode.CartAbandonment.Data.Handlers;
+using System.IO;
+using VirtoCommerce.NotificationsModule.TemplateLoader.FileSystem;
 
 namespace Sharpcode.CartAbandonment.Web
 {
@@ -55,9 +57,10 @@ namespace Sharpcode.CartAbandonment.Web
             settingsRegistrar.RegisterSettings(ModuleConstants.Settings.AllSettings, ModuleInfo.Id);
             settingsRegistrar.RegisterSettings(ModuleConstants.Settings.StoreLevelSettings, ModuleInfo.Id);
             settingsRegistrar.RegisterSettingsForType(ModuleConstants.Settings.StoreLevelSettings, typeof(Store).Name);
-            
+
+            var defaultTemplatesDirectory = Path.Combine(ModuleInfo.FullPhysicalPath, "NotificationTemplates");
             var notificationregistrar = appBuilder.ApplicationServices.GetService<INotificationRegistrar>();
-            notificationregistrar.RegisterNotification<CartReminderEmailNotification>();
+            notificationregistrar.RegisterNotification<CartAbandonmentEmailNotification>().WithTemplatesFromPath(defaultTemplatesDirectory);
 
             // Register permissions
             var permissionsRegistrar = serviceProvider.GetRequiredService<IPermissionsRegistrar>();

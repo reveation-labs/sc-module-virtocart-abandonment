@@ -40,7 +40,7 @@ namespace Sharpcode.CartAbandonment.Data.Notifications
             foreach (var shoppingCart in shoppingCarts)
             {
                 var notifications = new List<EmailNotification>();
-                var notification = await _notificationSearchService.GetNotificationAsync<CartReminderEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
+                var notification = await _notificationSearchService.GetNotificationAsync<CartAbandonmentEmailNotification>(new TenantIdentity(shoppingCart.StoreId, nameof(Store)));
                 if (notification != null)
                 {
                     //if user is anonymous and we have email id available then it will use this to trigegr email

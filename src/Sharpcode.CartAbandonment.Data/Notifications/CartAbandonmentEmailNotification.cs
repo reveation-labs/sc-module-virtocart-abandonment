@@ -3,9 +3,9 @@ using VirtoCommerce.NotificationsModule.Core.Model;
 
 namespace Sharpcode.CartAbandonment.Data.Notifications
 {
-    public class CartReminderEmailNotification : EmailNotification
+    public class CartAbandonmentEmailNotification : EmailNotification
     {
-        public CartReminderEmailNotification() : base(nameof(CartReminderEmailNotification))
+        public CartAbandonmentEmailNotification() : base(nameof(CartAbandonmentEmailNotification))
         {
 
         }

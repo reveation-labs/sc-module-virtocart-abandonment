@@ -10,18 +10,19 @@ using VirtoCommerce.CartModule.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.StoreModule.Core.Model.Search;
+using VirtoCommerce.StoreModule.Core.Services;
 
 namespace Sharpcode.CartAbandonment.Data.BackgroundJobs
 {
     public class ProcessCartRemider
     {        
         private readonly ISendCartReminderEmailNotification _sendCartReminderEmailNotification;        
-        private readonly VirtoCommerce.StoreModule.Core.Services.IStoreSearchService _storeSearchService;
+        private readonly IStoreSearchService _storeSearchService;
         private readonly IShoppingCartSearchService _shoppingCartSearchService;
         private readonly ISettingsManager _settingsManager;       
         public ProcessCartRemider(
             ISendCartReminderEmailNotification sendCartReminderEmailNotification,
-            VirtoCommerce.StoreModule.Core.Services.IStoreSearchService storeSearchService,
+            IStoreSearchService storeSearchService,
             IShoppingCartSearchService shoppingCartSearchService,
             ISettingsManager settingsManager)
         {
@@ -47,12 +48,12 @@ namespace Sharpcode.CartAbandonment.Data.BackgroundJobs
             foreach (var store in stores)
             {
                 // store level settings
-                var cronTime = await _settingsManager.GetValueAsync<int>(ModuleConstants.Settings.General.CronTime);
+                var cartTime = await _settingsManager.GetValueAsync<int>(ModuleConstants.Settings.General.CartTime);
                 var isStoreAllowed = await _settingsManager.GetValueAsync<bool>(ModuleConstants.Settings.CartAbandonmentStoreSettings.EnableCartReminder);
                 if(isStoreAllowed)
                 {
-                    var endDateTime = dateTime.AddHours(-cronTime);
-                    var startDateTime = endDateTime.AddHours(-cronTime);
+                    var endDateTime = dateTime.AddHours(-cartTime);
+                    var startDateTime = endDateTime.AddHours(-cartTime);
                     var shoppingCartSearchCritera = new ShoppingCartSearchCriteria
                     {
                         ModifiedStartDate = startDateTime,
