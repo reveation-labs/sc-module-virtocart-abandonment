@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <NotificationTemplates Remove="NotificationTemplates\CartAbandonmentEmailNotification_body.html" />
-    <NotificationTemplates Remove="NotificationTemplates\CartAbandonmentEmailNotification_subject.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sharpcode.CartAbandonment.Core\Sharpcode.CartAbandonment.Core.csproj" />
     <ProjectReference Include="..\Sharpcode.CartAbandonment.Data\Sharpcode.CartAbandonment.Data.csproj" />
   </ItemGroup>
