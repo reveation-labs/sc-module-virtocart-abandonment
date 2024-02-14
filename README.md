@@ -15,32 +15,36 @@ This new feature require a seamless one time setup in Virto Platform settings. B
 ### Enabling Cart Reminder feature
 Search for Cart Abandonment Reminder and enable options as required. In case to stop reminding through email notification, just disable 'Enable Cart Reminder' from below settings.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/890f6f25-f48a-4fac-b77c-e6f798a519f9)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/de76c556-e215-4a0c-9c74-25f305b6552b)
 
 
 ### Cart Reminder General Settings
 Below is the general settings of cart reminder, provide cron time and cron expression which will run the service in the background as per scheduled timing and send notifications to the configured email addresses.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/ff167a75-ffeb-4eab-a3cb-25751b12dc3e)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/c2de0b87-a3f1-40ad-aa15-1676610a2cad)
+
 
 
 ### Email Notification Setup
 Navigate to Notifications module and select Cart Reminder Email Notification.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/44c018d7-7302-40f7-8126-ef823a510249)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/550391f5-387f-407e-8a9d-bc81b34b6102)
+
 
 Enable Active option.
 Provide CC and BCC addresses if required.
 Add Template for Subject and Body of email notifications.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/68682f74-bb14-4ef2-943c-111985681eab)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/9bc716c3-23ba-47dd-8f2e-6f370fd0a249)
+
 
 ### Verify Email Notification
 
 After setting up cart reminder module, user can verify email notifications in Notification Activity Feed for status of each generated notifications.
 For Error status, check what is in the error section and resolve it accordingly.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/d96877a3-fbb9-4ba9-931b-801d4170634a)
+![EmailNotificationFeed](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/5188fc81-be42-4a51-b757-309fe2d72035)
+
 
 ## User Guide
 
@@ -56,7 +60,9 @@ In main blade it will show customer and store details for which carts have been 
 
 On selecting any customer, it will list out all the available items in the cart with details.
 
-![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/512fd7c6-665e-4c01-be2e-d13c6ff93bb4)
+![image](https://github.com/reveation-labs/virto-cart-abandonment-module/assets/115815461/3958f079-c4be-427c-9733-30e889527079)
+
+
 
 
 ## License
