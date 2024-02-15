@@ -13,13 +13,13 @@
     <description>CartAbandonment module</description>
 
     <authors>
-        <author>Reveation Labs</author>
+        <author>Sharpcode</author>
     </authors>
     <owners>
-        <owner>ReveationLabs</owner>
+        <owner>Sharpcode</owner>
     </owners>
 
-    <projectUrl>https://github.com/reveation-labs/virto-cart-abandonment-module</projectUrl>
+    <projectUrl>https://github.com/reveation-labs/sc-module-virtocart-abandonment</projectUrl>
     <iconUrl>Modules/$(Sharpcode.CartAbandonment)/Content/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
