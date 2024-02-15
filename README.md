@@ -1,4 +1,4 @@
-# CartAbandonmentReminder
+# Cart Abandonment Reminder for Virto Commerce
 
 ## Overview
 

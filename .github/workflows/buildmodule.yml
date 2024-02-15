@@ -1,0 +1,63 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build and Release module
+
+on:
+  push:
+    branches: 
+      - develop
+  pull_request:
+    branches: 
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install VC Build
+        run: |
+          dotnet tool install -g VirtoCommerce.GlobalTool
+
+      - name: VC Build Compress
+        run: |
+          vc-build compress --skip = test
+            
+    - name: Get Artifact Version
+        uses: VirtoCommerce/vc-github-actions/get-image-version@master
+        id: artifact_ver
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: ${{ steps.artifact_ver.outputs.prefix }}
+          release_name: ${{ steps.artifact_ver.outputs.prefix }}
+          draft: false
+          prerelease: false
+          body: |            
+            ## Added Features:           
+            - Cart Abandonment Reminder: Remind user for abandoned carts with one time setup.
+            - Email Notification: Remind logged in and anonymous customers through email notification.
+            - Scheduled Reminder: Control email reminder with configured schedule and send recurring notifications based on cron schedule.
+            - Configurable: Cart abandonment feature is flexible so can be enable and disable as required.
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./artifacts/Sharpcode.CartAbandonmentReminder_${{ steps.artifact_ver.outputs.prefix }}.zip
+          asset_name: Sharpcode.CartAbandonmentReminder_${{ steps.artifact_ver.outputs.prefix }}.zip
+          asset_content_type: application/zip
