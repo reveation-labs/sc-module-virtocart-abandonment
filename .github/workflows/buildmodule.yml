@@ -45,13 +45,12 @@ jobs:
           release_name: ${{ steps.artifact_ver.outputs.prefix }}
           draft: false
           prerelease: false
-          body: |
-            ## :dart: Development
-            ### Added Features:           
-            - Product Description Generation: Generate SEO-friendly product descriptions effortlessly.
-            - Translation Capabilities: Translate product details across multiple languages.
-            - Rephrasing Features: Refine and ensure unique product content.
-            - Image Generation: AI-powered creation of high-quality product images.
+          body: |            
+            ## Added Features:           
+            - Cart Abandonment Reminder: Remind user for abandoned carts with one time setup.
+            - Email Notification: Remind logged in and anonymous customers through email notification.
+            - Scheduled Reminder: Control email reminder with configured schedule and send recurring notifications based on cron schedule.
+            - Configurable: Cart abandonment feature is flexible so can be enable and disable as required.
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
