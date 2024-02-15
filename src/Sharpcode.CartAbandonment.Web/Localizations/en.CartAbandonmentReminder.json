@@ -1,0 +1,50 @@
+{
+  "CartAbandonment": {
+    "blades": {
+      "hello-world": {
+        "title": "Hello world blade"
+      }
+    }
+  },
+  "permissions": {
+    "CartAbandonment:access": "Open CartAbandonment menu",
+    "CartAbandonment:create": "Create CartAbandonment related data",
+    "CartAbandonment:read": "View CartAbandonment related data",
+    "CartAbandonment:update": "Update CartAbandonment related data",
+    "CartAbandonment:delete": "Delete CartAbandonment related data"
+  },
+  "settings": {
+    "CartAbandonment": {
+      "CartAbandonmentEnabled": {
+        "title": "Enable Cart Abandonment",
+        "description": "Enable this to leverage cart abandonment reminder feature"
+      },
+      "CronExpression": {
+        "title": "Cart Abandonment Cron Schedule",
+        "description": "Set a cron expression for job schedule"
+      },
+      "CartTime": {
+        "title": "Enter Cart Search Time in hours",
+        "description": "CartAbandonment Cron"
+      },
+      "EnableCartReminder": {
+        "title": "Enable Cart Reminder",
+        "description": "Enable this to get email notifications for abandoned carts"
+      },
+      "RemindUserAnonymous": {
+        "title": "Remind Anonymous Customers",
+        "description": "Enabling this will send notifications to anonymous customers"
+      },
+      "RemindUserLogin": {
+        "title": "Remind Logged in Customers",
+        "description": "Enabling this will send notification to logged in customers"
+      }
+    }
+  },
+  "notificationTypes": {
+    "CartAbandonmentEmailNotification": {
+      "displayName": "Cart Abandonment Reminder Email",
+      "description": "Customers will get an email notification for abandoned carts"
+    }
+  }
+}
