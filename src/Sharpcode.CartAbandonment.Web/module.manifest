@@ -27,7 +27,7 @@
     <moduleType>Sharpcode.CartAbandonment.Web.Module, Sharpcode.CartAbandonment.Web</moduleType>
 
     <releaseNotes>First version.</releaseNotes>
-    <copyright>Copyright © 2022 ReveationLabs. All rights reserved</copyright>
+    <copyright>Copyright © 2022 Sharpcode. All rights reserved</copyright>
     <tags>extension module</tags>
     <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
 </module>
